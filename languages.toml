@@ -12,17 +12,17 @@ indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["python-lsp"]
 
-# [language-server.elixir-lsp]
-# command = "elixir-ls"
+[language-server.elixir-lsp]
+command = "elixir-ls"
 
-# [[language]]
-# name = "elixir"
-# scope = "source.ex"
-# injection-regex = "ex"
-# file-types = ["exs", "ex"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format = true
-# language-servers = [ "elixir-lsp" ]
+[[language]]
+name = "elixir"
+scope = "source.ex"
+injection-regex = "ex"
+file-types = ["exs", "ex"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = [ "elixir-lsp" ]
 
 [language-server.c-cpp-lsp]
 command = "clangd"
@@ -214,13 +214,13 @@ auto-format=true
 
 
 
-# [[language]]
-# name = "go"
-# scope = "source.go"
-# injection-regex = "go"
-# file-types = ["go"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format=true
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+indent = { tab-width = 2, unit = "  " }
+auto-format=true
 
 # [[language]]
 # name = "fortran"
