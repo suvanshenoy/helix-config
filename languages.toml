@@ -27,6 +27,7 @@ language-servers = [ "elixir-lsp" ]
 [language-server.c-cpp-lsp]
 command = "clangd"
 args = ["--background-index"]
+# config = {"clangd.fallbackFlags" = ["-std=c++17"]}
 
 [[language]]
 name = "c"
@@ -166,25 +167,25 @@ auto-format=true
 # language-servers = ["lua-lsp"]
 # auto-format=true
 
-# [language-server.hs-lsp]
-# command = "haskell-language-server-wrapper"
-# args = ["--lsp"]
+[language-server.hs-lsp]
+command = "haskell-language-server-wrapper"
+args = ["--lsp"]
 
-# [formatter.hs-fmt]
-# command = "fourmolu"
-# args = ["--stdin-input-file"]
+[formatter.hs-fmt]
+command = "fourmolu"
+args = ["--stdin-input-file"]
 
 
 
-# [[language]]
-# name = "haskell"
-# scope = "source.hs"
-# injection-regex = "hs"
-# file-types = ["hs"]
-# indent = { tab-width = 2, unit = "  " }
-# language-servers = ["hs-lsp"]
-# formatter = ["hs-fmt"]
-# auto-format=true
+[[language]]
+name = "haskell"
+scope = "source.hs"
+injection-regex = "hs"
+file-types = ["hs"]
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["hs-lsp"]
+formatter = ["hs-fmt"]
+auto-format=true
 
 
 # [language-server.nim-lsp]
