@@ -26,6 +26,7 @@ language-servers = [ "elixir-lsp" ]
 
 [language-server.c-cpp-lsp]
 command = "clangd"
+args = ["--background-index"]
 
 [[language]]
 name = "c"
@@ -42,6 +43,7 @@ name = "cpp"
 scope = "source.cpp"
 injection-regex = "cpp"
 file-types = ["cpp","h","hpp"]
+roots = ["CmakeLists.txt",".git","compile_commands.json"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [ "c-cpp-lsp" ]
