@@ -1,0 +1,233 @@
+[language-server.python-lsp]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+
+[[language]]
+name = "python"
+scope = "source.py"
+injection-regex = "py"
+file-types = ["py","pyproject.toml"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["python-lsp"]
+
+# [language-server.elixir-lsp]
+# command = "elixir-ls"
+
+# [[language]]
+# name = "elixir"
+# scope = "source.ex"
+# injection-regex = "ex"
+# file-types = ["exs", "ex"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = [ "elixir-lsp" ]
+
+[language-server.c-cpp-lsp]
+command = "clangd"
+
+[[language]]
+name = "c"
+scope = "source.c"
+injection-regex = "c"
+file-types = ["c","h"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [ "c-cpp-lsp" ]
+
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+injection-regex = "cpp"
+file-types = ["cpp","h","hpp"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [ "c-cpp-lsp" ]
+
+# [language-server.cr-lsp]
+# command = "crystalline"
+# args = ["--stdio"]
+
+# [[language]]
+# name = "crystal"
+# scope = "source.cr"
+# injection-regex = "cr"
+# file-types = ["cr"]
+# auto-format = true
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = [ "cr-lsp" ]
+
+[language-server.bash-lsp]
+command = "bash-language-server"
+args = ["start"]
+
+
+[[language]]
+name = "bash"
+scope = "source.sh"
+injection-regex = "sh"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = [ "bash-lsp" ]
+
+[language-server.js-ts-lsp]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "js"
+file-types = ["js","cjs","ejs"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = [ "js-ts-lsp" ]
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "ts"
+file-types = ["ts"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = [ "js-ts-lsp" ]
+
+
+# [language-server.OmniSharp]
+# command = "/home/suvan/Main/tools/omnisharp/run"
+# args = ["-lsp"]
+
+
+# [[language]]
+# name = "c-sharp"
+# scope = "source.cs"
+# injection-regex = "cs"
+# file-types = ["cs"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = [ "OmniSharp" ]
+
+
+# [[language]]
+# name = "java"
+# scope = "source.java"
+# injection-regex = "java"
+# file-types = ["java"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = [ "jdtls" ]
+
+# [language-server.ruby-lsp]
+# command = "solargraph"
+# args = ["stdio"]
+# config = {diagnostics = true,formatting=true}
+
+# [formatter.ruby-fmt]
+# command = "rubocop"
+# args = ["--stdin","--lsp","--stderr","--fail-level","fatal","--format clang"]
+# timeout = 3
+
+# [[language]]
+# name = "ruby"
+# scope = "source.rb"
+# injection-regex = "rb"
+# file-types = ["rb"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["ruby-lsp"]
+# formatter = ["ruby-fmt"]
+# auto-format=true
+
+
+[language-server.rust-lsp]
+command = "rust-analyzer"
+
+[[language]]
+name = "rust"
+scope = "source.rs"
+injection-regex = "rs"
+file-types = ["rs"]
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["rust-lsp"]
+auto-format=true
+
+# [language-server.lua-lsp]
+# command = "lua-language-server"
+
+# [[language]]
+# name = "lua"
+# scope = "source.lua"
+# injection-regex = "lua"
+# file-types = ["lua"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["lua-lsp"]
+# auto-format=true
+
+# [language-server.hs-lsp]
+# command = "haskell-language-server-wrapper"
+# args = ["--lsp"]
+
+# [formatter.hs-fmt]
+# command = "fourmolu"
+# args = ["--stdin-input-file"]
+
+
+
+# [[language]]
+# name = "haskell"
+# scope = "source.hs"
+# injection-regex = "hs"
+# file-types = ["hs"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["hs-lsp"]
+# formatter = ["hs-fmt"]
+# auto-format=true
+
+
+# [language-server.nim-lsp]
+# command = "nimlangserver"
+
+
+# [[language]]
+# name = "nim"
+# scope = "source.nim"
+# injection-regex = "nim"
+# file-types = ["nim"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["nim-lsp"]
+# auto-format=true
+
+
+# [language-server.v-lsp]
+# command = "v"
+# args = ["ls"]
+
+# [[language]]
+# name = "v"
+# scope = "source.v"
+# injection-regex = "v"
+# file-types = ["v","vsh"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["v-lsp"]
+# auto-format=true
+
+
+
+# [[language]]
+# name = "go"
+# scope = "source.go"
+# injection-regex = "go"
+# file-types = ["go"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format=true
+
+# [[language]]
+# name = "fortran"
+# scope = "source.f90"
+# injection-regex = "f90"
+# file-types = ["f90"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers=["fortls"]
+# auto-format=true
+
