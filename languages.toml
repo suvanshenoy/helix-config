@@ -130,7 +130,7 @@ injection-regex = "kt"
 file-types = ["kt","kts"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "kotlin-language-server" ]
+# language-servers = [ "kotlin-language-server" ]
 
 
 # [language-server.ruby-lsp]
