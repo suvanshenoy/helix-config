@@ -12,17 +12,6 @@ indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["python-lsp"]
 
-# [language-server.elixir-lsp]
-# command = "elixir-ls"
-
-# [[language]]
-# name = "elixir"
-# scope = "source.ex"
-# injection-regex = "ex"
-# file-types = ["exs", "ex"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format = true
-# language-servers = [ "elixir-lsp" ]
 
 [language-server.c-cpp-lsp]
 command = "clangd"
@@ -49,18 +38,6 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [ "c-cpp-lsp" ]
 
-# [language-server.cr-lsp]
-# command = "crystalline"
-# args = ["--stdio"]
-
-# [[language]]
-# name = "crystal"
-# scope = "source.cr"
-# injection-regex = "cr"
-# file-types = ["cr"]
-# auto-format = true
-# indent = { tab-width = 2, unit = "  " }
-# language-servers = [ "cr-lsp" ]
 
 [language-server.bash-lsp]
 command = "bash-language-server"
@@ -98,20 +75,6 @@ auto-format = true
 language-servers = [ "js-ts-lsp" ]
 
 
-# [language-server.OmniSharp]
-# command = "/home/suvan/Main/tools/omnisharp/run"
-# args = ["-lsp"]
-
-
-# [[language]]
-# name = "c-sharp"
-# scope = "source.cs"
-# injection-regex = "cs"
-# file-types = ["cs"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format = true
-# language-servers = [ "OmniSharp" ]
-
 
 [[language]]
 name = "java"
@@ -122,6 +85,9 @@ indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = [ "jdtls" ]
 
+# [language-server.kotlin-ls]
+# command = "kotlin-language-server"
+# args = ["Stdio"]
 
 [[language]]
 name = "kotlin"
@@ -130,28 +96,8 @@ injection-regex = "kt"
 file-types = ["kt","kts"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-# language-servers = [ "kotlin-language-server" ]
 
 
-# [language-server.ruby-lsp]
-# command = "solargraph"
-# args = ["stdio"]
-# config = {diagnostics = true,formatting=true}
-
-# [formatter.ruby-fmt]
-# command = "rubocop"
-# args = ["--stdin","--lsp","--stderr","--fail-level","fatal","--format clang"]
-# timeout = 3
-
-# [[language]]
-# name = "ruby"
-# scope = "source.rb"
-# injection-regex = "rb"
-# file-types = ["rb"]
-# indent = { tab-width = 2, unit = "  " }
-# language-servers = ["ruby-lsp"]
-# formatter = ["ruby-fmt"]
-# auto-format=true
 
 
 [language-server.rust-lsp]
@@ -166,37 +112,26 @@ indent = { tab-width = 2, unit = "  " }
 language-servers = ["rust-lsp"]
 auto-format=true
 
-# [language-server.lua-lsp]
-# command = "lua-language-server"
+
+# [language-server.hs-lsp]
+# command = "haskell-language-server-wrapper"
+# args = ["--lsp"]
+
+# [formatter.hs-fmt]
+# command = "fourmolu"
+# args = ["--stdin-input-file"]
+
+
 
 # [[language]]
-# name = "lua"
-# scope = "source.lua"
-# injection-regex = "lua"
-# file-types = ["lua"]
+# name = "haskell"
+# scope = "source.hs"
+# injection-regex = "hs"
+# file-types = ["hs"]
 # indent = { tab-width = 2, unit = "  " }
-# language-servers = ["lua-lsp"]
+# language-servers = ["hs-lsp"]
+# formatter = ["hs-fmt"]
 # auto-format=true
-
-[language-server.hs-lsp]
-command = "haskell-language-server-wrapper"
-args = ["--lsp"]
-
-[formatter.hs-fmt]
-command = "fourmolu"
-args = ["--stdin-input-file"]
-
-
-
-[[language]]
-name = "haskell"
-scope = "source.hs"
-injection-regex = "hs"
-file-types = ["hs"]
-indent = { tab-width = 2, unit = "  " }
-language-servers = ["hs-lsp"]
-formatter = ["hs-fmt"]
-auto-format=true
 
 
 # [language-server.nim-lsp]
@@ -245,3 +180,77 @@ auto-format=true
 # language-servers=["fortls"]
 # auto-format=true
 
+# [language-server.elixir-lsp]
+# command = "elixir-ls"
+
+# [[language]]
+# name = "elixir"
+# scope = "source.ex"
+# injection-regex = "ex"
+# file-types = ["exs", "ex"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = [ "elixir-lsp" ]
+
+
+# [language-server.cr-lsp]
+# command = "crystalline"
+# args = ["--stdio"]
+
+# [[language]]
+# name = "crystal"
+# scope = "source.cr"
+# injection-regex = "cr"
+# file-types = ["cr"]
+# auto-format = true
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = [ "cr-lsp" ]
+
+
+# [language-server.OmniSharp]
+# command = "/home/suvan/Main/tools/omnisharp/run"
+# args = ["-lsp"]
+
+
+# [[language]]
+# name = "c-sharp"
+# scope = "source.cs"
+# injection-regex = "cs"
+# file-types = ["cs"]
+# indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = [ "OmniSharp" ]
+
+
+# [language-server.ruby-lsp]
+# command = "solargraph"
+# args = ["stdio"]
+# config = {diagnostics = true,formatting=true}
+
+# [formatter.ruby-fmt]
+# command = "rubocop"
+# args = ["--stdin","--lsp","--stderr","--fail-level","fatal","--format clang"]
+# timeout = 3
+
+# [[language]]
+# name = "ruby"
+# scope = "source.rb"
+# injection-regex = "rb"
+# file-types = ["rb"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["ruby-lsp"]
+# formatter = ["ruby-fmt"]
+# auto-format=true
+
+
+# [language-server.lua-lsp]
+# command = "lua-language-server"
+
+# [[language]]
+# name = "lua"
+# scope = "source.lua"
+# injection-regex = "lua"
+# file-types = ["lua"]
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = ["lua-lsp"]
+# auto-format=true
