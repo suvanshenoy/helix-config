@@ -7,7 +7,7 @@ args = ["--stdio"]
 name = "python"
 scope = "source.py"
 injection-regex = "py"
-file-types = ["py","pyproject.toml"]
+file-types = ["py", "pyproject.toml"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["python-lsp"]
@@ -22,21 +22,21 @@ args = ["--background-index"]
 name = "c"
 scope = "source.c"
 injection-regex = "c"
-file-types = ["c","h"]
+file-types = ["c", "h"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-language-servers = [ "c-cpp-lsp" ]
+language-servers = ["c-cpp-lsp"]
 
 
 [[language]]
 name = "cpp"
 scope = "source.cpp"
 injection-regex = "cpp"
-file-types = ["cpp","h","hpp"]
-roots = ["CmakeLists.txt",".git","compile_commands.json"]
+file-types = ["cpp", "h", "hpp"]
+roots = ["CmakeLists.txt", ".git", "compile_commands.json"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-language-servers = [ "c-cpp-lsp" ]
+language-servers = ["c-cpp-lsp"]
 
 
 [language-server.bash-lsp]
@@ -50,7 +50,7 @@ scope = "source.sh"
 injection-regex = "sh"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "bash-lsp" ]
+language-servers = ["bash-lsp"]
 
 [language-server.js-ts-lsp]
 command = "typescript-language-server"
@@ -60,10 +60,10 @@ args = ["--stdio"]
 name = "javascript"
 scope = "source.js"
 injection-regex = "js"
-file-types = ["js","cjs","ejs"]
+file-types = ["js", "cjs", "ejs"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "js-ts-lsp" ]
+language-servers = ["js-ts-lsp"]
 
 [[language]]
 name = "typescript"
@@ -72,8 +72,7 @@ injection-regex = "ts"
 file-types = ["ts"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "js-ts-lsp" ]
-
+language-servers = ["js-ts-lsp"]
 
 
 [[language]]
@@ -83,7 +82,7 @@ injection-regex = "java"
 file-types = ["java"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "jdtls" ]
+language-servers = ["jdtls"]
 
 # [language-server.kotlin-ls]
 # command = "kotlin-language-server"
@@ -93,11 +92,9 @@ language-servers = [ "jdtls" ]
 name = "kotlin"
 scope = "source.kt"
 injection-regex = "kt"
-file-types = ["kt","kts"]
+file-types = ["kt", "kts"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-
-
 
 
 [language-server.rust-lsp]
@@ -110,12 +107,12 @@ injection-regex = "rs"
 file-types = ["rs"]
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["rust-lsp"]
-auto-format=true
+auto-format = true
 
 
 [language-server.toml-lsp]
 command = "taplo"
-args = ["lsp","stdio"]
+args = ["lsp", "stdio"]
 
 [[language]]
 name = "toml"
@@ -123,9 +120,8 @@ scope = "source.toml"
 injection-regex = "toml"
 file-types = ["toml"]
 indent = { tab-width = 2, unit = "  " }
-language-servers = ["toml-lsp"]
-auto-format=true
-
+# language-servers = ["toml-lsp"]
+auto-format = true
 
 
 # [language-server.hs-lsp]
@@ -135,7 +131,6 @@ auto-format=true
 # [formatter.hs-fmt]
 # command = "fourmolu"
 # args = ["--stdin-input-file"]
-
 
 
 # [[language]]
@@ -177,7 +172,6 @@ auto-format=true
 # auto-format=true
 
 
-
 # [[language]]
 # name = "go"
 # scope = "source.go"
@@ -195,17 +189,17 @@ auto-format=true
 # language-servers=["fortls"]
 # auto-format=true
 
-# [language-server.elixir-lsp]
-# command = "elixir-ls"
+[language-server.elixir-lsp]
+command = "elixir-ls"
 
-# [[language]]
-# name = "elixir"
-# scope = "source.ex"
-# injection-regex = "ex"
-# file-types = ["exs", "ex"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format = true
-# language-servers = [ "elixir-lsp" ]
+[[language]]
+name = "elixir"
+scope = "source.ex"
+injection-regex = "ex"
+file-types = ["exs", "ex"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = [ "elixir-lsp" ]
 
 
 # [language-server.cr-lsp]
