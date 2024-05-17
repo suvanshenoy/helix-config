@@ -172,13 +172,13 @@ auto-format = true
 # auto-format=true
 
 
-# [[language]]
-# name = "go"
-# scope = "source.go"
-# injection-regex = "go"
-# file-types = ["go"]
-# indent = { tab-width = 2, unit = "  " }
-# auto-format=true
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
 
 # [[language]]
 # name = "fortran"
@@ -199,7 +199,7 @@ injection-regex = "ex"
 file-types = ["exs", "ex"]
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = [ "elixir-lsp" ]
+language-servers = ["elixir-lsp"]
 
 
 # [language-server.cr-lsp]
