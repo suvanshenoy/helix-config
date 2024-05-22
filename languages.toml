@@ -33,12 +33,7 @@ name = "cpp"
 scope = "source.cpp"
 injection-regex = "cpp"
 file-types = ["cpp", "h", "hpp", "cppm", "cc"]
-roots = [
-  "CmakeLists.txt",
-  ".git",
-  "compile_commands.json",
-  "/usr/include/c++/13.2.1/*",
-]
+roots = ["CmakeLists.txt", ".git", "compile_commands.json"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["c-cpp-lsp"]
