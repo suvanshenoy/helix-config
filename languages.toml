@@ -1,4 +1,4 @@
-language-server.python-lsp]
+[language-server.python-lsp]
 # command = "pyright-langserver"
 command = ""
 args = ["--stdio"]
