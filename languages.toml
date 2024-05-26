@@ -1,8 +1,7 @@
-[language-server.python-lsp]
-command = "pyright-langserver"
+language-server.python-lsp]
+# command = "pyright-langserver"
+command = ""
 args = ["--stdio"]
-# except-features=["diagnostics","warnings"]
-config = {diagnostics = false,formatting=true}
 
 
 
@@ -17,10 +16,9 @@ language-servers = ["python-lsp"]
 
 
 [language-server.c-cpp-lsp]
-command = "clangd"
+# command = "clangd"
+command = ""
 args = ["--background-index"]
-except-features=["diagnostics","warnings"]
-config = {diagnostics = false,formatting=true}
 
 
 # config = {"clangd.fallbackFlags" = ["-std=c++17"]}
@@ -47,9 +45,9 @@ language-servers = ["c-cpp-lsp"]
 
 
 [language-server.bash-lsp]
-command = "bash-language-server"
+ # command = "bash-language-server"
+command = ""
 args = ["start"]
-
 
 [[language]]
 name = "bash"
@@ -60,10 +58,9 @@ auto-format = true
 language-servers = ["bash-lsp"]
 
 [language-server.js-ts-lsp]
-command = "typescript-language-server"
+# command = "typescript-language-server"
+command = ""
 args = ["--stdio"]
-except-features=["diagnostics","warnings"]
-config = {diagnostics = false,formatting=true}
 
 
 
@@ -88,10 +85,9 @@ language-servers = ["js-ts-lsp"]
 
 
 [language-server.kotlin-ls]
-command = "kotlin-language-server"
+# command = "kotlin-language-server"
+command = ""
 args = ["Stdio"]
-except-features=["diagnostics","warnings"]
-config = {diagnostics = false,formatting=true}
 
 
 
@@ -105,8 +101,8 @@ auto-format = true
 
 
 [language-server.rust-lsp]
-command = "rust-analyzer"
-except-features=["diagnostics","warnings"]
+# command = "rust-analyzer"
+command = ""
 
 [[language]]
 name = "rust"
@@ -121,7 +117,6 @@ auto-format = true
 [language-server.toml-lsp]
 command = "taplo"
 args = ["lsp", "stdio"]
-except-features=["diagnostics","warnings"]
 
 [[language]]
 name = "toml"
@@ -134,9 +129,9 @@ auto-format = true
 
 
 [language-server.hs-lsp]
-command = "haskell-language-server-wrapper"
-args = ["--lsp"]
-config = {diagnostics = false,formatting=true}
+# command = "haskell-language-server-wrapper"
+command = ""
+# args = ["--lsp"]
 
 
 [formatter.hs-fmt]
@@ -156,8 +151,8 @@ auto-format=true
 
 
 [language-server.nim-lsp]
-command = "nimlangserver"
-config = {diagnostics = false,formatting=true}
+# command = "nimlangserver"
+command = ""
 
 
 
@@ -172,9 +167,9 @@ auto-format=true
 
 
 [language-server.v-lsp]
-command = "v"
+# command = "v"
+command = ""
 args = ["ls"]
-config = {diagnostics = false,formatting=true}
 
 
 [[language]]
@@ -196,8 +191,8 @@ indent = { tab-width = 2, unit = "  " }
 auto-format = true
 
 [language-server.elixir-lsp]
-command = "elixir-ls"
-config = {diagnostics = false,formatting=true}
+# command = "elixir-ls"
+command = ""
 
 
 [[language]]
@@ -211,14 +206,13 @@ language-servers = ["elixir-lsp"]
 
 
 [language-server.ruby-lsp]
-command = "solargraph"
+# command = "solargraph"
+command = ""
 args = ["stdio"]
-config = {diagnostics = true,formatting=true}
-except-features=["diagnostics","warnings"]
 
 
 [formatter.ruby-fmt]
-command = "rubocop"
+# command = "rubocop"
 args = ["--stdin","--lsp","--stderr","--fail-level","fatal","--format clang"]
 timeout = 3
 
@@ -234,8 +228,8 @@ auto-format=true
 
 
 [language-server.lua-lsp]
-command = "lua-language-server"
-config = {diagnostics = false,formatting=true}
+# command = "lua-language-server"
+command = ""
 
 
 [[language]]
