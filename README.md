@@ -1,1 +1,1 @@
-Note: This repo is for storing config files for helix editor 
+Note: This repo is to store config files for helix editor 
