@@ -1,0 +1,77 @@
+[language-server.python-lsp]
+command = "pyright-langserver"
+args = ["--stdio"]
+config = {}
+
+
+[[language]]
+name = "python"
+scope = "source.py"
+injection-regex = "py"
+file-types = ["py"]
+roots = ["pyproject.toml","poetry.lock"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+formatter = {command = "bash", args = ["-c","black --quiet - | isort -"]}
+language-servers = ["python-lsp"]
+
+
+[language-server.c-cpp-lsp]
+command = "clangd"
+args = ["--background-index"]
+
+[[language]]
+name = "c"
+scope = "source.c"
+injection-regex = "c"
+file-types = ["c","h"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["c-cpp-lsp"]
+
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+injection-regex = "cpp"
+file-types = ["hpp","h","cpp","cc"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["c-cpp-lsp"]
+
+
+[language-server.bash-lsp]
+ command = "bash-language-server"
+args = ["start"]
+
+[[language]]
+name = "bash"
+scope = "source.sh"
+injection-regex = "sh"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = []
+
+[language-server.js-ts-lsp]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "js"
+file-types = ["js", "cjs", "ejs"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = []
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "ts"
+file-types = ["ts"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = []
