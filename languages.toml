@@ -1,0 +1,140 @@
+[language-server.py-lsp]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+
+[[language]]
+name = "python"
+scope = "source.py"
+file-types = ["py"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "black", args = [
+  "--line-length",
+  "88",
+  "--quiet",
+  "-",
+] }
+language-servers = ["py-lsp"]
+# language-servers = [{name="py-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+
+
+[language-server.bash-lsp]
+command = "bash-language-server"
+args = ["start"]
+
+[[language]]
+name = "bash"
+scope = "source.sh"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["bash-lsp"]
+
+[language-server.ts-lsp]
+command = "typescript-language-server"
+args = ["--stdio"]
+config = {}
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+file-types = ["ejs", "cjs", "js", "mjs"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+# language-servers = [{name="ts-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+language-servers = ["ts-lsp"]
+
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+file-types = ["ts", "tsx"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+# language-servers = [{name="ts-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+language-servers = ["ts-lsp"]
+
+
+[language-server.nix-lsp]
+command = "nixd"
+
+[[language]]
+name = "nix"
+scope = "source.nix"
+file-types = ["nix"]
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "alejandra" }
+auto-format = true
+language-servers = ["nix-lsp"]
+
+[language-server.md-lsp]
+command = "harper-ls"
+args = ["--stdio"]
+config = {}
+
+[[language]]
+name = "markdown"
+scope = "source.md"
+file-types = ["md"]
+auto-format = true
+formatter = { command = "mdformat", args = ["-"] }
+language-servers = ["md-lsp"]
+
+
+[[language]]
+name = "toml"
+scope = "source.toml"
+file-types = ["toml"]
+auto-format = true
+
+[language-server.java-lsp]
+command = "jdtls"
+
+[[language]]
+name = "java"
+scope = "source.java"
+roots = ["build.gradle"]
+file-types = ["java"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+# language-servers = [
+#   { name = "java-lsp", except-features = [
+#     "diagnostics",
+#   ], only-features = [
+#     "format",
+#     "goto-definition",
+#     "goto-declaration",
+#     "goto-type-definition",
+#     "goto-implementation",
+#     "goto-reference",
+#     "code-action",
+#   ] },
+# ]
+language-servers = ["java-lsp"]
+
+[language-server.groovy-lsp]
+command = "java"
+args = [
+  "-jar",
+  "/home/suvan/.groovy-language-server/groovy-language-server/build/libs/groovy-language-server-all.jar",
+]
+
+[[language]]
+name = "groovy"
+scope = "source.groovy"
+file-types = ["gradle"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["groovy-lsp"]
+
+
+[[language]]
+name = "go"
+scope = "source.go"
+file-types = ["go"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+formatter = { command = "gofmt" }
+language-servers = ["gopls"]
+
+
