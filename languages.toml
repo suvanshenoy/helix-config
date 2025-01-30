@@ -1,6 +1,49 @@
-[language-server.py-lsp]
+#python
+[language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
+
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+environment = { "RUFF_TRACE" = "messages" }
+
+
+[language-server.ruff.config.settings]
+lineLength = 80
+logLevel = "debug"
+
+[language-server.ruff.config.settings.lint]
+select = [
+  "E",
+  "F",
+  "W",
+  "B",
+  "I",
+  "RUF",
+  "N",
+  "LOG",
+  "ERA",
+  "W",
+  "D",
+  "UP",
+  "ANN",
+  "ASYNC",
+  "S",
+  "RET",
+  "TCH",
+  "ARG",
+  "PTH",
+  "DOC",
+]
+preview = true
+
+[language-server.ruff.config.settings.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
 
 
 [[language]]
@@ -9,16 +52,11 @@ scope = "source.py"
 file-types = ["py"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-formatter = { command = "black", args = [
-  "--line-length",
-  "88",
-  "--quiet",
-  "-",
-] }
-language-servers = ["py-lsp"]
-# language-servers = [{name="py-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+formatter = { command = "ruff", args = ["format", "-"] }
+language-servers = ["ruff", "pyright"]
+#python end
 
-
+#bash
 [language-server.bash-lsp]
 command = "bash-language-server"
 args = ["start"]
@@ -29,11 +67,13 @@ scope = "source.sh"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["bash-lsp"]
+#bash end
 
-[language-server.ts-lsp]
-command = "typescript-language-server"
-args = ["--stdio"]
-config = {}
+#javascript-typescript
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
 
 [[language]]
 name = "javascript"
@@ -41,20 +81,86 @@ scope = "source.js"
 file-types = ["ejs", "cjs", "js", "mjs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-# language-servers = [{name="ts-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
-language-servers = ["ts-lsp"]
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
 
 
 [[language]]
 name = "typescript"
 scope = "source.ts"
-file-types = ["ts", "tsx"]
+file-types = ["ts"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-# language-servers = [{name="ts-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
-language-servers = ["ts-lsp"]
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+#javascript-typescript end
+
+#json
+[[language]]
+name = "json"
+scope = "source.json"
+file-types = ["json"]
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+#json end
+
+[language-server.tailwindcss-language-server]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+config = {}
+
+#jsx
+[[language]]
+
+name = "jsx"
+scope = "source.jsx"
+file-types = ["jsx"]
+roots = ["tailwind.config.mjs"]
+
+indent = { tab-width = 4, unit = "\t" }
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "tailwindcss-language-server",
+  "biome",
+]
+#jsx end
+
+#css
+[[language]]
+name = "css"
+scope = "source.css"
+file-types = ["css"]
+roots = ["tailwind.config.mjs", ".prettierrc.json"]
+auto-format = true
+language-servers = ["tailwindcss-language-server", "vscode-css-language-server"]
+#css end
 
 
+#html
+[[language]]
+name = "html"
+language-servers = [
+  "vscode-html-language-server",
+  "tailwindcss-language-server",
+]
+#html end
+
+#nix 
 [language-server.nix-lsp]
 command = "nixd"
 
@@ -66,8 +172,10 @@ indent = { tab-width = 2, unit = "  " }
 formatter = { command = "alejandra" }
 auto-format = true
 language-servers = ["nix-lsp"]
+#nix end
 
-[language-server.md-lsp]
+#markdown
+[language-server.harper-ls]
 command = "harper-ls"
 args = ["--stdio"]
 config = {}
@@ -78,63 +186,52 @@ scope = "source.md"
 file-types = ["md"]
 auto-format = true
 formatter = { command = "mdformat", args = ["-"] }
-language-servers = ["md-lsp"]
+language-servers = ["harper-ls"]
+#markdown end
 
-
+#toml
 [[language]]
 name = "toml"
 scope = "source.toml"
 file-types = ["toml"]
 auto-format = true
+#toml end
 
-[language-server.java-lsp]
-command = "jdtls"
+#cpp
+[language-server.clangd]
+command = "clangd"
+args = ["--background-index"]
 
 [[language]]
-name = "java"
-scope = "source.java"
-roots = ["build.gradle"]
-file-types = ["java"]
-indent = { tab-width = 2, unit = "  " }
+name = "cpp"
+scope = "source.cpp"
+file-types = ["cpp", "cxx", "cc", "hh", "hpp", "hxx"]
 auto-format = true
-# language-servers = [
-#   { name = "java-lsp", except-features = [
-#     "diagnostics",
-#   ], only-features = [
-#     "format",
-#     "goto-definition",
-#     "goto-declaration",
-#     "goto-type-definition",
-#     "goto-implementation",
-#     "goto-reference",
-#     "code-action",
-#   ] },
-# ]
-language-servers = ["java-lsp"]
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "clang-format" }
+language-servers = ["clangd"]
+#cpp end
 
-[language-server.groovy-lsp]
-command = "java"
-args = [
-  "-jar",
-  "/home/suvan/.groovy-language-server/groovy-language-server/build/libs/groovy-language-server-all.jar",
+
+#go
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--out-format",
+  "json",
+  "--issues-exit-code=1",
 ]
-
-[[language]]
-name = "groovy"
-scope = "source.groovy"
-file-types = ["gradle"]
-indent = { tab-width = 2, unit = "  " }
-auto-format = true
-language-servers = ["groovy-lsp"]
-
 
 [[language]]
 name = "go"
 scope = "source.go"
 file-types = ["go"]
-indent = { tab-width = 2, unit = "  " }
 auto-format = true
+indent = { tab-width = 2, unit = "  " }
 formatter = { command = "gofmt" }
-language-servers = ["gopls"]
-
-
+language-servers = ["gopls", "golangci-lint-langserver"]
+#go end

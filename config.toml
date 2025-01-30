@@ -1,4 +1,4 @@
-theme = "zig_theme"
+theme = "personal_theme"
 
 
 [editor]
@@ -28,18 +28,14 @@ left = [
   "mode",
   "file-name",
   "read-only-indicator",
-  "file-modification-indicator"
+  "file-modification-indicator",
 ]
 center = ["version-control"]
-right = [
-  "diagnostics",
-  "file-type",
-]
+right = ["diagnostics", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-
 
 
 [editor.indent-guides]
@@ -51,4 +47,3 @@ skip-levels = 1
 C-s = ":write"
 C-z = ":quit!"
 C-q = ":write-quit"
-
