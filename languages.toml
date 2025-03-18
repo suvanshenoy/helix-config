@@ -69,24 +69,37 @@ auto-format = true
 language-servers = ["bash-lsp"]
 #bash end
 
+#powershell
+# [language-server.powershell-editor-services-lsp]
+# command = "bash-language-server"
+# args = ["start"]
+
+[[language]]
+name = "powershell"
+scope = "source.ps1"
+indent = { tab-width = 2, unit = "  " }
+# auto-format = true
+# language-servers = ["bash-lsp"]
+#powershell
+
 #javascript-typescript
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
 
 
-[[language]]
-name = "javascript"
-scope = "source.js"
-file-types = ["ejs", "cjs", "js", "mjs"]
-auto-format = true
-indent = { tab-width = 2, unit = "  " }
-language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
-  "biome",
-]
+# [[language]]
+# name = "javascript"
+# scope = "source.js"
+# file-types = ["ejs", "cjs", "js", "mjs"]
+# auto-format = true
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = [
+#   { name = "typescript-language-server", only-features = [
+#     "goto-definition",
+#   ] },
+#   "biome",
+# ]
 
 
 [[language]]
@@ -96,8 +109,18 @@ file-types = ["ts"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
+  { name = "typescript-language-server", only-features = [
+    "goto-definition",
+    "goto-declaration",
+    "goto-type-definition",
+    "goto-reference",
+    "goto-implementation",
+    "document-highlight",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+    "diagnostics",
   ] },
   "biome",
 ]
@@ -127,7 +150,6 @@ config = {}
 name = "jsx"
 scope = "source.jsx"
 file-types = ["jsx"]
-roots = ["tailwind.config.mjs"]
 
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
@@ -145,7 +167,6 @@ language-servers = [
 name = "css"
 scope = "source.css"
 file-types = ["css"]
-roots = ["tailwind.config.mjs", ".prettierrc.json"]
 auto-format = true
 language-servers = ["tailwindcss-language-server", "vscode-css-language-server"]
 #css end
@@ -159,20 +180,6 @@ language-servers = [
   "tailwindcss-language-server",
 ]
 #html end
-
-#nix 
-[language-server.nix-lsp]
-command = "nixd"
-
-[[language]]
-name = "nix"
-scope = "source.nix"
-file-types = ["nix"]
-indent = { tab-width = 2, unit = "  " }
-formatter = { command = "alejandra" }
-auto-format = true
-language-servers = ["nix-lsp"]
-#nix end
 
 #markdown
 [language-server.harper-ls]
@@ -194,24 +201,11 @@ language-servers = ["harper-ls"]
 name = "toml"
 scope = "source.toml"
 file-types = ["toml"]
-auto-format = true
-#toml end
-
-#cpp
-[language-server.clangd]
-command = "clangd"
-args = ["--background-index"]
-
-[[language]]
-name = "cpp"
-scope = "source.cpp"
-file-types = ["cpp", "cxx", "cc", "hh", "hpp", "hxx"]
-auto-format = true
 indent = { tab-width = 2, unit = "  " }
-formatter = { command = "clang-format" }
-language-servers = ["clangd"]
-#cpp end
-
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+language-servers = ["taplo"]
+#toml end
 
 #go
 [language-server.golangci-lint-langserver]
@@ -233,5 +227,20 @@ file-types = ["go"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "gofmt" }
-language-servers = ["gopls", "golangci-lint-langserver"]
+language-servers = [
+  { name = "gopls", only-features = [
+    "goto-definition",
+    "goto-declaration",
+    "goto-type-definition",
+    "goto-reference",
+    "goto-implementation",
+    "document-highlight",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+    "diagnostics",
+  ] },
+  "golangci-lint-langserver",
+]
 #go end
