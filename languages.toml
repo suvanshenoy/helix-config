@@ -237,3 +237,16 @@ language-servers = [
   "golangci-lint-langserver",
 ]
 #go end
+
+#vue
+[[language]]
+name = "vue"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = ["typescript-language-server"]
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "D:/.bun/install/global/node_modules/@vue/language-server"
+languages = ["vue"]
+#vue end
