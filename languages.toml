@@ -49,6 +49,8 @@ language-servers = [
     "workspace-symbols",
     "rename-symbol",
     "diagnostics",
+    "completion",
+    "signature-help",
   ] },
   "biome",
 ]
@@ -73,6 +75,8 @@ language-servers = [
     "workspace-symbols",
     "rename-symbol",
     "diagnostics",
+    "completion",
+    "signature-help",
   ] },
   "biome",
 ]
@@ -106,7 +110,7 @@ file-types = ["jsx"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
+  { name = "typescript-language-server", only-features = [
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
@@ -118,7 +122,8 @@ language-servers = [
     "workspace-symbols",
     "rename-symbol",
     "diagnostics",
-
+    "completion",
+    "signature-help",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -136,7 +141,7 @@ file-types = ["tsx"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
+  { name = "typescript-language-server", only-features = [
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
@@ -148,7 +153,8 @@ language-servers = [
     "workspace-symbols",
     "rename-symbol",
     "diagnostics",
-
+    "completion",
+    "signature-help",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -233,6 +239,8 @@ language-servers = [
     "workspace-symbols",
     "rename-symbol",
     "diagnostics",
+    "completion",
+    "signature-help",
   ] },
   "golangci-lint-langserver",
 ]
