@@ -101,12 +101,14 @@ language-servers = [
     "goto-reference",
     "goto-implementation",
     "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
     "workspace-command",
     "document-symbols",
     "workspace-symbols",
     "rename-symbol",
-    "diagnostics",
-    "completion",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -127,12 +129,14 @@ language-servers = [
     "goto-reference",
     "goto-implementation",
     "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
     "workspace-command",
     "document-symbols",
     "workspace-symbols",
     "rename-symbol",
-    "diagnostics",
-    "completion",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -174,12 +178,14 @@ language-servers = [
     "goto-reference",
     "goto-implementation",
     "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
     "workspace-command",
     "document-symbols",
     "workspace-symbols",
     "rename-symbol",
-    "diagnostics",
-    "completion",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -204,12 +210,14 @@ language-servers = [
     "goto-reference",
     "goto-implementation",
     "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
     "workspace-command",
     "document-symbols",
     "workspace-symbols",
     "rename-symbol",
-    "diagnostics",
-    "completion",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -289,12 +297,14 @@ language-servers = [
     "goto-reference",
     "goto-implementation",
     "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
     "workspace-command",
     "document-symbols",
     "workspace-symbols",
     "rename-symbol",
-    "diagnostics",
-    "completion",
   ] },
   "golangci-lint-langserver",
 ]
@@ -320,7 +330,116 @@ location = "~/main/system-tools/eclipse.jdt.ls-1.46.0/org.eclipse.jdt.ls.product
 
 [[language]]
 name = "java"
-roots = ["pom.xml","build.gradle"]
+scope = "source.java"
+file-types = ["java"]
+roots = ["pom.xml", "build.gradle"]
 auto-format = true
-language-servers = ["jdtls"]
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "jdtls", only-features = [
+    "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+  ] },
+]
 #java end
+
+
+#dart
+[language-server.dart]
+command = "dart"
+
+[[language]]
+name = "dart"
+scope = "source.dart"
+file-types = ["java"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "dart", args = ["format"] }
+language-servers = [
+  { name = "dart", only-features = [
+    "goto-definition",
+    "goto-declaration",
+    "goto-type-definition",
+    "goto-reference",
+    "goto-implementation",
+    "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+  ] },
+]
+#dart end
+
+#cpp 
+[language-server.clangd]
+command = "clangd"
+args = ["--compile-commands-dir=./build"]
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+file-types = ["cpp", "hpp", "cc", "hh"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "clangd", only-features = [
+    "goto-definition",
+    "goto-declaration",
+    "goto-type-definition",
+    "goto-reference",
+    "goto-implementation",
+    "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+  ] },
+]
+#cpp end
+
+
+#rust end
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[[language]]
+name = "rust"
+scope = "source.rs"
+file-types = ["rs"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "rust-analyzer", only-features = [
+    "goto-definition",
+    "goto-declaration",
+    "goto-type-definition",
+    "goto-reference",
+    "goto-implementation",
+    "document-highlight",
+    "rename-symbol",
+    "diagnostics",
+    "completion",
+    "code-action",
+    "workspace-command",
+    "document-symbols",
+    "workspace-symbols",
+    "rename-symbol",
+  ] },
+]
+#rust end
