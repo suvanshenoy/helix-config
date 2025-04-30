@@ -291,6 +291,7 @@ indent = { tab-width = 2, unit = "  " }
 formatter = { command = "gofmt" }
 language-servers = [
   { name = "gopls", only-features = [
+    "format",
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
@@ -337,6 +338,7 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "jdtls", only-features = [
+    "format",
     "document-highlight",
     "rename-symbol",
     "diagnostics",
@@ -358,12 +360,13 @@ command = "dart"
 [[language]]
 name = "dart"
 scope = "source.dart"
-file-types = ["java"]
+file-types = ["dart"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dart", args = ["format"] }
 language-servers = [
   { name = "dart", only-features = [
+    "format",
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
@@ -395,6 +398,7 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "clangd", only-features = [
+    "format",
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
@@ -426,6 +430,7 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "rust-analyzer", only-features = [
+    "format",
     "goto-definition",
     "goto-declaration",
     "goto-type-definition",
