@@ -327,13 +327,13 @@ language-servers = ["typescript-language-server"]
 #java
 [language-server.jdtls]
 command = "jdtls"
-location = "~/main/system-tools/eclipse.jdt.ls-1.46.0/org.eclipse.jdt.ls.product/target/repository/bin"
+location = "~/main/system-tools/jdtls/bin"
 
 [[language]]
 name = "java"
 scope = "source.java"
 file-types = ["java"]
-roots = ["pom.xml", "build.gradle"]
+roots = ["pom.xml"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
@@ -388,7 +388,7 @@ language-servers = [
 #cpp 
 [language-server.clangd]
 command = "clangd"
-args = ["--compile-commands-dir=./build"]
+args = ["--compile-commands-dir=."]
 
 [[language]]
 name = "cpp"
@@ -424,7 +424,7 @@ command = "rust-analyzer"
 
 [[language]]
 name = "rust"
-scope = "source.rs"
+scope = "source.rust"
 file-types = ["rs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
