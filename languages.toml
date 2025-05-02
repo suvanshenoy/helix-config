@@ -94,21 +94,10 @@ file-types = ["cjs", "js", "mjs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "typescript-language-server", only-features = [
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -122,21 +111,10 @@ file-types = ["ts"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "typescript-language-server", only-features = [
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -171,21 +149,10 @@ file-types = ["jsx"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", only-features = [
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -203,21 +170,10 @@ file-types = ["tsx"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", only-features = [
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
   ] },
   "tailwindcss-language-server",
   "biome",
@@ -289,26 +245,7 @@ file-types = ["go"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "gofmt" }
-language-servers = [
-  { name = "gopls", only-features = [
-    "format",
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
-  ] },
-  "golangci-lint-langserver",
-]
+language-servers = [{ name = "gopls" }, "golangci-lint-langserver"]
 #go end
 
 #vue 
@@ -337,17 +274,9 @@ roots = ["pom.xml"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "jdtls", only-features = [
-    "format",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "jdtls", except-features = [
+    "signature-help",
+    "inlay-hints",
   ] },
 ]
 #java end
@@ -365,22 +294,9 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dart", args = ["format"] }
 language-servers = [
-  { name = "dart", only-features = [
-    "format",
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "dart", except-features = [
+    "signature-help",
+    "inlay-hints",
   ] },
 ]
 #dart end
@@ -388,7 +304,7 @@ language-servers = [
 #cpp 
 [language-server.clangd]
 command = "clangd"
-args = ["--compile-commands-dir=."]
+args = ["--background-index", "--compile-commands-dir=./build", "--clang-tidy"]
 
 [[language]]
 name = "cpp"
@@ -397,28 +313,15 @@ file-types = ["cpp", "hpp", "cc", "hh"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "clangd", only-features = [
-    "format",
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "clangd", except-features = [
+    "signature-help",
+    "inlay-hints",
   ] },
 ]
 #cpp end
 
 
-#rust end
+#rust
 [language-server.rust-analyzer]
 command = "rust-analyzer"
 
@@ -429,22 +332,36 @@ file-types = ["rs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
-  { name = "rust-analyzer", only-features = [
-    "format",
-    "goto-definition",
-    "goto-declaration",
-    "goto-type-definition",
-    "goto-reference",
-    "goto-implementation",
-    "document-highlight",
-    "rename-symbol",
-    "diagnostics",
-    "completion",
-    "code-action",
-    "workspace-command",
-    "document-symbols",
-    "workspace-symbols",
-    "rename-symbol",
+  { name = "rust-analyzer", except-features = [
+    "signature-help",
+    "inlay-hints",
   ] },
 ]
 #rust end
+
+
+#ruby
+[language-server.solargraph]
+command = "solargraph"
+args = ["stdio"]
+config = { diagnostics = false, formatting = false }
+
+[language-server.rubocop]
+command = "rubocop"
+args = ["--lsp", "--stderr", "--fail-level", "fatal"]
+timeout = 3
+
+[[language]]
+name = "ruby"
+scope = "source.ruby"
+file-types = ["rb", "rbs"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "solargraph", except-features = [
+    "diagnostics",
+    "format",
+  ] },
+  "rubocop",
+]
+#ruby end
