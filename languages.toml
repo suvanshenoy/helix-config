@@ -45,7 +45,6 @@ indent-style = "space"
 
 [[language]]
 name = "python"
-language-id = "python"
 roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
 language-servers = ["ruff", "pyright"]
 auto-format = true
@@ -62,7 +61,6 @@ args = ["start"]
 
 [[language]]
 name = "bash"
-scope = "source.sh"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["bash-language-server"]
@@ -89,7 +87,6 @@ args = ["lsp-proxy"]
 
 [[language]]
 name = "javascript"
-scope = "source.js"
 file-types = ["cjs", "js", "mjs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
@@ -106,7 +103,6 @@ language-servers = [
 
 [[language]]
 name = "typescript"
-scope = "source.ts"
 file-types = ["ts"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
@@ -124,8 +120,6 @@ language-servers = [
 #json
 [[language]]
 name = "json"
-scope = "source.json"
-file-types = ["json"]
 language-servers = [
   { name = "vscode-json-language-server", except-features = [
     "format",
@@ -143,9 +137,6 @@ config = {}
 [[language]]
 
 name = "jsx"
-scope = "source.jsx"
-file-types = ["jsx"]
-
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
@@ -164,9 +155,6 @@ language-servers = [
 [[language]]
 
 name = "tsx"
-scope = "source.tsx"
-file-types = ["tsx"]
-
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
@@ -183,8 +171,6 @@ language-servers = [
 #css
 [[language]]
 name = "css"
-scope = "source.css"
-file-types = ["css"]
 auto-format = true
 language-servers = ["tailwindcss-language-server", "vscode-css-language-server"]
 #css end
@@ -200,25 +186,19 @@ language-servers = [
 #html end
 
 #markdown
-[language-server.harper-ls]
-command = "harper-ls"
-args = ["--stdio"]
-config = {}
+[language-server.markdown-oxide]
+command = "markdown-oxide"
 
 [[language]]
 name = "markdown"
-scope = "source.md"
-file-types = ["md"]
 auto-format = true
-formatter = { command = "mdformat", args = ["-"] }
-language-servers = ["harper-ls"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+language-servers = ["markdown-oxide"]
 #markdown end
 
 #toml
 [[language]]
 name = "toml"
-scope = "source.toml"
-file-types = ["toml"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
@@ -240,18 +220,22 @@ command = [
 
 [[language]]
 name = "go"
-scope = "source.go"
-file-types = ["go"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "gofmt" }
-language-servers = [{ name = "gopls" }, "golangci-lint-langserver"]
+language-servers = [
+  { name = "gopls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "golangci-lint-langserver",
+]
 #go end
 
 #vue 
 [[language-server.typescript-language-server.config.plugins]]
 name = "@vue/typescript-plugin"
-location = "~/.bun/install/global/node_modules/@vue/language-server"
+location = "/home/suvan/.bun/install/global/node_modules/@vue/language-server"
 languages = ["vue"]
 
 [[language]]
@@ -268,8 +252,6 @@ location = "~/main/system-tools/jdtls/bin"
 
 [[language]]
 name = "java"
-scope = "source.java"
-file-types = ["java"]
 roots = ["pom.xml"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
@@ -288,8 +270,6 @@ command = "dart"
 
 [[language]]
 name = "dart"
-scope = "source.dart"
-file-types = ["dart"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "dart", args = ["format"] }
@@ -308,7 +288,6 @@ args = ["--background-index", "--compile-commands-dir=./build", "--clang-tidy"]
 
 [[language]]
 name = "cpp"
-scope = "source.cpp"
 file-types = ["cpp", "hpp", "cc", "hh"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
@@ -327,8 +306,6 @@ command = "rust-analyzer"
 
 [[language]]
 name = "rust"
-scope = "source.rust"
-file-types = ["rs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
@@ -353,15 +330,34 @@ timeout = 3
 
 [[language]]
 name = "ruby"
-scope = "source.ruby"
-file-types = ["rb", "rbs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "solargraph", except-features = [
+    "signature-help",
+    "inlay-hints",
     "diagnostics",
     "format",
   ] },
   "rubocop",
 ]
 #ruby end
+
+#csharp
+[language-server.omnisharp]
+command = "/home/suvan/main/system-tools/omnisharp-roslyn/omnisharp/OmniSharp.exe"
+args = ["-lsp"]
+timeout = 10000
+
+[[language]]
+name = "c-sharp"
+roots = ["sln", "csproj"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "omnisharp", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#csharp end
