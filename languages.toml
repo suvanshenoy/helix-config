@@ -87,6 +87,7 @@ args = ["lsp-proxy"]
 
 [[language]]
 name = "javascript"
+roots = ["biome.json", "jsconfig.json"]
 file-types = ["cjs", "js", "mjs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
@@ -103,7 +104,16 @@ language-servers = [
 
 [[language]]
 name = "typescript"
-file-types = ["ts"]
+roots = [
+  "biome.json",
+  "tsconfig.json",
+  "tsconfig.base.json",
+  "tsconfig.client.json",
+  "tsconfig.app.json",
+  "tsconfig.server.json",
+  "tsconfig.node.json",
+]
+file-types = ["ts", "mts"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
@@ -135,8 +145,8 @@ config = {}
 
 #jsx
 [[language]]
-
 name = "jsx"
+roots = ["biome.json", "tsconfig.json"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
@@ -153,8 +163,8 @@ language-servers = [
 
 #tsx
 [[language]]
-
 name = "tsx"
+roots = ["biome.json", "tsconfig.json"]
 indent = { tab-width = 4, unit = "\t" }
 auto-format = true
 language-servers = [
@@ -199,7 +209,7 @@ language-servers = ["markdown-oxide"]
 #toml
 [[language]]
 name = "toml"
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
 language-servers = ["taplo"]
@@ -221,7 +231,7 @@ command = [
 [[language]]
 name = "go"
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "gofmt" }
 language-servers = [
   { name = "gopls", except-features = [
@@ -254,7 +264,7 @@ location = "~/main/system-tools/jdtls/bin"
 name = "java"
 roots = ["pom.xml"]
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "jdtls", except-features = [
     "signature-help",
@@ -271,7 +281,7 @@ command = "dart"
 [[language]]
 name = "dart"
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "dart", args = ["format"] }
 language-servers = [
   { name = "dart", except-features = [
@@ -290,7 +300,7 @@ args = ["--background-index", "--compile-commands-dir=./build", "--clang-tidy"]
 name = "cpp"
 file-types = ["cpp", "hpp", "cc", "hh"]
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "clangd", except-features = [
     "signature-help",
@@ -307,7 +317,7 @@ command = "rust-analyzer"
 [[language]]
 name = "rust"
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "rust-analyzer", except-features = [
     "signature-help",
@@ -331,7 +341,7 @@ timeout = 3
 [[language]]
 name = "ruby"
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "solargraph", except-features = [
     "signature-help",
@@ -353,7 +363,7 @@ timeout = 10000
 name = "c-sharp"
 roots = ["sln", "csproj"]
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "omnisharp", except-features = [
     "signature-help",
