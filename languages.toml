@@ -52,7 +52,7 @@ formatter = { command = "ruff", args = ["format", "-"] }
 file-types = ["py", "ipynb"]
 comment-token = "#"
 shebangs = ["python"]
-#python
+#python end
 
 #bash
 [language-server.bash-language-server]
@@ -67,17 +67,17 @@ language-servers = ["bash-language-server"]
 #bash end
 
 #powershell
-# [language-server.powershell-editor-services-lsp]
-# command = "bash-language-server"
-# args = ["start"]
+[language-server.powershell-editor-services-lsp]
+command = "bash-language-server"
+args = ["start"]
 
 [[language]]
 name = "powershell"
 scope = "source.ps1"
 indent = { tab-width = 2, unit = "  " }
-# auto-format = true
-# language-servers = ["bash-lsp"]
-#powershell
+auto-format = true
+language-servers = ["bash-lsp"]
+#powershell end
 
 #javascript-typescript
 [language-server.biome]
@@ -258,7 +258,7 @@ language-servers = ["typescript-language-server"]
 #java
 [language-server.jdtls]
 command = "jdtls"
-location = "~/main/system-tools/jdtls/bin"
+location = "/home/suvan/main/system-tools/jdtls/bin"
 
 [[language]]
 name = "java"
@@ -371,3 +371,109 @@ language-servers = [
   ] },
 ]
 #csharp end
+
+#zig
+[language-server.zls]
+command = "zls"
+
+[[language]]
+name = "zig"
+roots = ["build.zig"]
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+language-servers = [
+  { name = "zls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#zig end
+
+#nim
+# [language-server.nimlangserver]
+# command = "nimlangserver"
+
+[[language]]
+name = "nim"
+roots = []
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+# language-servers = [
+#   { name = "nimlangserver", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
+# ]
+#nim end
+
+
+#odin
+# [language-server.ols]
+# command = "ols"
+
+[[language]]
+name = "odin"
+# roots = []
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+# language-servers = [
+#   { name = "ols", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
+# ]
+#odin end
+
+
+#elixir
+# [language-server.elixir-ls]
+# command = "elixir-ls"
+
+[[language]]
+name = "elixir"
+# roots = []
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+# language-servers = [
+#   { name = "elixir-ls", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
+# ]
+#elixir end
+
+
+#ocaml
+# [language-server.elixir-ls]
+# command = "elixir-ls"
+
+[[language]]
+name = "ocaml"
+# roots = []
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+# language-servers = [
+#   { name = "elixir-ls", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
+# ]
+#ocaml end
+
+
+#haskell
+# [language-server.elixir-ls]
+# command = "elixir-ls"
+
+[[language]]
+name = "haskell"
+# roots = ["build.zig"]
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+# language-servers = [
+#   { name = "elixir-ls", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
+# ]
+#haskell end
