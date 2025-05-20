@@ -526,6 +526,11 @@ auto-format = true
 indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   "svelteserver",
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
+  ] },
   "vscode-html-language-server",
   "tailwindcss-language-server",
   "biome",
