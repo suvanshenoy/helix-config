@@ -79,6 +79,7 @@ auto-format = true
 language-servers = ["bash-lsp"]
 #powershell end
 
+
 #javascript-typescript
 [language-server.biome]
 command = "biome"
@@ -187,8 +188,12 @@ language-servers = ["tailwindcss-language-server", "vscode-css-language-server"]
 
 
 #html
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+
 [[language]]
 name = "html"
+auto-format = true
 language-servers = [
   "vscode-html-language-server",
   "tailwindcss-language-server",
@@ -477,3 +482,53 @@ indent = { tab-width = 2, unit = "\t" }
 #   ] },
 # ]
 #haskell end
+
+#yaml
+[language-server.yaml-language-server]
+command = "yaml-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "yaml"
+auto-format = true
+language-servers = ["yaml-language-server"]
+#yaml
+
+
+#dockerfile
+[language-server.docker-langserver]
+command = "docker-langserver"
+
+[[language]]
+name = "dockerfile"
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+language-servers = ["docker-langserver"]
+#dockerfile
+
+
+#yaml
+[[language]]
+name = "docker-compose"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+language-servers = ["yaml-language-server"]
+#yaml
+
+
+#svelte
+[language-server.svelteserver]
+command = "svelteserver"
+
+[[language]]
+name = "svelte"
+auto-format = true
+indent = { tab-width = 2, unit = "\t" }
+language-servers = [
+  "svelteserver",
+  "vscode-html-language-server",
+  "tailwindcss-language-server",
+  "biome",
+]
+
+#svelte end
