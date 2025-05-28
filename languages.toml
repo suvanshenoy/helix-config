@@ -67,16 +67,21 @@ language-servers = ["bash-language-server"]
 #bash end
 
 #powershell
-[language-server.powershell-editor-services-lsp]
-command = "bash-language-server"
-args = ["start"]
+[language-server.powershell-editor-services]
+command = "pwsh"
+args = [
+  "-NoLogo",
+  "-NoProfile",
+  "-Command",
+  "/home/suvan/main/system-tools/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1 -SessionDetailsPath ./session.json  -FeatureFlags @() -AdditionalModules @() -HostName helix -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal",
+]
+config = {}
 
 [[language]]
 name = "powershell"
-scope = "source.ps1"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = ["bash-lsp"]
+language-servers = ["powershell-editor-services"]
 #powershell end
 
 
@@ -89,7 +94,6 @@ args = ["lsp-proxy"]
 [[language]]
 name = "javascript"
 roots = ["biome.json", "jsconfig.json"]
-file-types = ["cjs", "js", "mjs"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
@@ -114,9 +118,7 @@ roots = [
   "tsconfig.server.json",
   "tsconfig.node.json",
 ]
-file-types = ["ts", "mts"]
 auto-format = true
-indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "typescript-language-server", except-features = [
     "signature-help",
@@ -147,8 +149,7 @@ config = {}
 #jsx
 [[language]]
 name = "jsx"
-roots = ["biome.json", "tsconfig.json"]
-indent = { tab-width = 4, unit = "\t" }
+roots = ["biome.json", "jsconfig.json"]
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [
@@ -165,8 +166,15 @@ language-servers = [
 #tsx
 [[language]]
 name = "tsx"
-roots = ["biome.json", "tsconfig.json"]
-indent = { tab-width = 4, unit = "\t" }
+roots = [
+  "biome.json",
+  "tsconfig.json",
+  "tsconfig.base.json",
+  "tsconfig.client.json",
+  "tsconfig.app.json",
+  "tsconfig.server.json",
+  "tsconfig.node.json",
+]
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [
@@ -214,7 +222,6 @@ language-servers = ["markdown-oxide"]
 #toml
 [[language]]
 name = "toml"
-indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
 language-servers = ["taplo"]
@@ -236,7 +243,6 @@ command = [
 [[language]]
 name = "go"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "gofmt" }
 language-servers = [
   { name = "gopls", except-features = [
@@ -257,7 +263,15 @@ languages = ["vue"]
 name = "vue"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "vue"] }
-language-servers = ["typescript-language-server"]
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "vscode-html-language-server",
+  "tailwindcss-language-server",
+  "biome",
+]
 #vue end
 
 #java
@@ -269,7 +283,6 @@ location = "/home/suvan/main/system-tools/jdtls/bin"
 name = "java"
 roots = ["pom.xml"]
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "jdtls", except-features = [
     "signature-help",
@@ -286,7 +299,6 @@ command = "dart"
 [[language]]
 name = "dart"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 formatter = { command = "dart", args = ["format"] }
 language-servers = [
   { name = "dart", except-features = [
@@ -305,7 +317,6 @@ args = ["--background-index", "--compile-commands-dir=./build", "--clang-tidy"]
 name = "cpp"
 file-types = ["cpp", "hpp", "cc", "hh"]
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "clangd", except-features = [
     "signature-help",
@@ -322,7 +333,6 @@ command = "rust-analyzer"
 [[language]]
 name = "rust"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "rust-analyzer", except-features = [
     "signature-help",
@@ -346,7 +356,6 @@ timeout = 3
 [[language]]
 name = "ruby"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "solargraph", except-features = [
     "signature-help",
@@ -368,7 +377,6 @@ timeout = 10000
 name = "c-sharp"
 roots = ["sln", "csproj"]
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "omnisharp", except-features = [
     "signature-help",
@@ -385,7 +393,6 @@ command = "zls"
 name = "zig"
 roots = ["build.zig"]
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   { name = "zls", except-features = [
     "signature-help",
@@ -402,7 +409,6 @@ language-servers = [
 name = "nim"
 roots = []
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 # language-servers = [
 #   { name = "nimlangserver", except-features = [
 #     "signature-help",
@@ -420,7 +426,6 @@ indent = { tab-width = 2, unit = "\t" }
 name = "odin"
 # roots = []
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 # language-servers = [
 #   { name = "ols", except-features = [
 #     "signature-help",
@@ -438,7 +443,6 @@ indent = { tab-width = 2, unit = "\t" }
 name = "elixir"
 # roots = []
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 # language-servers = [
 #   { name = "elixir-ls", except-features = [
 #     "signature-help",
@@ -456,7 +460,6 @@ indent = { tab-width = 2, unit = "\t" }
 name = "ocaml"
 # roots = []
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 # language-servers = [
 #   { name = "elixir-ls", except-features = [
 #     "signature-help",
@@ -474,7 +477,6 @@ indent = { tab-width = 2, unit = "\t" }
 name = "haskell"
 # roots = ["build.zig"]
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 # language-servers = [
 #   { name = "elixir-ls", except-features = [
 #     "signature-help",
@@ -502,7 +504,6 @@ command = "docker-langserver"
 [[language]]
 name = "dockerfile"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = ["docker-langserver"]
 #dockerfile
 
@@ -523,7 +524,6 @@ command = "svelteserver"
 [[language]]
 name = "svelte"
 auto-format = true
-indent = { tab-width = 2, unit = "\t" }
 language-servers = [
   "svelteserver",
   { name = "typescript-language-server", except-features = [
