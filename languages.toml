@@ -236,4 +236,14 @@ formatter = { command = "prettier", args = ["--parser", "yaml"] }
 language-servers = ["yaml-language-server"]
 #yaml
 
+#haskell
+[language-server.haskell-language-server]
+command = "haskell-language-server-9.6.7"
+args = ["--lsp"]
 
+[[language]]
+name = "haskell"
+roots = ["Setup.hs","stack.yaml","*.cabal"]
+auto-format = true
+language-servers = ["haskell-language-server"]
+#haskell
