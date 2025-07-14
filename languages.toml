@@ -22,6 +22,15 @@ language-servers = ["powershell-editor-services"]
 command = "biome"
 args = ["lsp-proxy"]
 
+[language-server.angular-language-server]
+command = "ngserver"
+args = [
+  "--stdio",
+  "--tsProbeLocations",
+  "C:/Users/HP/.bun/install/global/node_modules/typescript/lib",
+  "--ngProbeLocations",
+  "C:/Users/HP/.bun/install/global/node_modules/@angular/language-server/bin"
+]
 
 [[language]]
 name = "javascript"
@@ -58,6 +67,7 @@ language-servers = [
     "format",
   ] },
   "tailwindcss-language-server",
+  "angular-language-server",
   "biome",
 ]
 #javascript-typescript end
@@ -134,9 +144,11 @@ command = "vscode-html-language-server"
 [[language]]
 name = "html"
 auto-format = true
+roots = ["angular.json"]
 language-servers = [
   "vscode-html-language-server",
   "tailwindcss-language-server",
+  "angular-language-server"
 ]
 #html end
 
@@ -184,26 +196,6 @@ language-servers = [
   "golangci-lint-langserver",
 ]
 #go end
-
-#vue 
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "C:/Users/HP/.bun/install/global/node_modules/@vue/language-server"
-languages = ["vue"]
-
-[[language]]
-name = "vue"
-auto-format = true
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  "vscode-html-language-server",
-  "tailwindcss-language-server",
-]
-#vue end
 
 #yaml
 [language-server.yaml-language-server]
