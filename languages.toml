@@ -22,15 +22,15 @@ language-servers = ["powershell-editor-services"]
 command = "biome"
 args = ["lsp-proxy"]
 
-[language-server.angular-language-server]
-command = "ngserver"
-args = [
-  "--stdio",
-  "--tsProbeLocations",
-  "C:/Users/HP/.bun/install/global/node_modules/typescript/lib",
-  "--ngProbeLocations",
-  "C:/Users/HP/.bun/install/global/node_modules/@angular/language-server/bin"
-]
+# [language-server.angular-language-server]
+# command = "ngserver"
+# args = [
+#   "--stdio",
+#   "--tsProbeLocations",
+#   "C:/Users/HP/.bun/install/global/node_modules/typescript/lib",
+#   "--ngProbeLocations",
+#   "C:/Users/HP/.bun/install/global/node_modules/@angular/language-server/bin"
+# ]
 
 [[language]]
 name = "javascript"
@@ -43,7 +43,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
+  # "tailwindcss-language-server",
   "biome",
 ]
 
@@ -66,8 +66,8 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
-  "angular-language-server",
+  # "tailwindcss-language-server",
+  # "angular-language-server",
   "biome",
 ]
 #javascript-typescript end
@@ -99,7 +99,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
+  # "tailwindcss-language-server",
   "biome",
 ]
 #jsx end
@@ -124,7 +124,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
+  # "tailwindcss-language-server",
   "biome",
 ]
 #tsx end
@@ -133,7 +133,10 @@ language-servers = [
 [[language]]
 name = "css"
 auto-format = true
-language-servers = ["tailwindcss-language-server", "vscode-css-language-server"]
+language-servers = [
+  # "tailwindcss-language-server"
+  "vscode-css-language-server",
+]
 #css end
 
 
@@ -144,12 +147,8 @@ command = "vscode-html-language-server"
 [[language]]
 name = "html"
 auto-format = true
-roots = ["angular.json"]
-language-servers = [
-  "vscode-html-language-server",
-  "tailwindcss-language-server",
-  "angular-language-server"
-]
+# roots = ["angular.json"]
+language-servers = ["vscode-html-language-server"]
 #html end
 
 #markdown
@@ -170,32 +169,6 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
 language-servers = ["taplo"]
 #toml end
-
-#go
-[language-server.golangci-lint-langserver]
-command = "golangci-lint-langserver"
-
-[language-server.golangci-lint-langserver.config]
-command = [
-  "golangci-lint",
-  "run",
-  "--out-format",
-  "json",
-  "--issues-exit-code=1",
-]
-
-[[language]]
-name = "go"
-auto-format = true
-formatter = { command = "gofmt" }
-language-servers = [
-  { name = "gopls", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  "golangci-lint-langserver",
-]
-#go end
 
 #yaml
 [language-server.yaml-language-server]
@@ -228,14 +201,15 @@ formatter = { command = "prettier", args = ["--parser", "yaml"] }
 language-servers = ["yaml-language-server"]
 #yaml
 
-#haskell
-[language-server.haskell-language-server]
-command = "haskell-language-server-9.6.7"
-args = ["--lsp"]
+#astro
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = { "typescript" = { "tsdk" = "C:/Users/HP/.bun/install/global/node_modules/typescript/lib/" }, enviroment = "node" }
 
 [[language]]
-name = "haskell"
-roots = ["Setup.hs","stack.yaml","*.cabal"]
+name = "astro"
+roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-language-servers = ["haskell-language-server"]
-#haskell
+language-servers = ["astro-ls", "biome"]
+#astro end
