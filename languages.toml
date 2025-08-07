@@ -18,17 +18,6 @@ language-servers = ["powershell-editor-services"]
 
 
 #javascript-typescript
-
-# [language-server.angular-language-server]
-# command = "ngserver"
-# args = [
-#   "--stdio",
-#   "--tsProbeLocations",
-#   "C:/Users/HP/.bun/install/global/node_modules/typescript/lib",
-#   "--ngProbeLocations",
-#   "C:/Users/HP/.bun/install/global/node_modules/@angular/language-server/bin"
-# ]
-
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
@@ -73,11 +62,11 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  # { name = "typescript-language-server", except-features = [
-  #   "signature-help",
-  #   "inlay-hints",
-  #   "format",
-  # ] },
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
+  ] },
   "biome",
 ]
 #javascript-typescript end
@@ -114,7 +103,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  # "tailwindcss-language-server",
+  "tailwindcss-language-server",
   "biome",
 ]
 #jsx end
