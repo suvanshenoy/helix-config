@@ -1,19 +1,26 @@
 theme = "personal_theme"
 
-
 [editor]
 line-number = "relative"
 mouse = false
-gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
 cursorline = true
-shell = ["pwsh.exe","-NoLogo","-NoProfile","-NoProfileLoadTime","-Command","$PSStyle.OutputRendering='PlainText';"]
-
+shell = [
+  "pwsh.exe",
+  "-NoLogo",
+  "-NoProfile",
+  "-NoProfileLoadTime",
+  "-Command",
+  "$PSStyle.OutputRendering='PlainText';",
+]
 
 [editor.lsp]
 enable = true
-# display-messages = true
+display-messages = true
 snippets = true
+display-progress-messages = true
+display-signature-help-docs = true
 goto-reference-include-declaration = true
+
 
 [editor.cursor-shape]
 insert = "bar"
@@ -37,12 +44,31 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
 
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
 
 [editor.indent-guides]
 render = true
-character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+character = "╎"
 skip-levels = 1
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25
+max-indent-retain = 0
+wrap-indicator = ""
 
 [keys.normal]
 C-s = ":write"
