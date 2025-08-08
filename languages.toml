@@ -46,15 +46,7 @@ args = ["--stdio"]
 
 [[language]]
 name = "typescript"
-roots = [
-  "biome.json",
-  "tsconfig.json",
-  "tsconfig.base.json",
-  "tsconfig.client.json",
-  "tsconfig.app.json",
-  "tsconfig.server.json",
-  "tsconfig.node.json",
-]
+roots = ["tsconfig.json"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
@@ -62,11 +54,11 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
+  # { name = "typescript-language-server", except-features = [
+  #   "signature-help",
+  #   "inlay-hints",
+  #   "format",
+  # ] },
   "biome",
 ]
 #javascript-typescript end
@@ -74,6 +66,17 @@ language-servers = [
 #json
 [[language]]
 name = "json"
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+#json end
+
+#json
+[[language]]
+name = "jsonc"
 language-servers = [
   { name = "vscode-json-language-server", except-features = [
     "format",
@@ -90,7 +93,7 @@ config = {}
 #jsx
 [[language]]
 name = "jsx"
-roots = ["biome.json", "jsconfig.json"]
+roots = ["jsconfig.json"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
@@ -112,15 +115,7 @@ language-servers = [
 #tsx
 [[language]]
 name = "tsx"
-roots = [
-  "biome.json",
-  "tsconfig.json",
-  "tsconfig.base.json",
-  "tsconfig.client.json",
-  "tsconfig.app.json",
-  "tsconfig.server.json",
-  "tsconfig.node.json",
-]
+roots = ["tsconfig.json"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
@@ -219,5 +214,5 @@ config = { "typescript" = { "tsdk" = "C:/Users/HP/.bun/install/global/node_modul
 name = "astro"
 roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-language-servers = ["astro-ls", "tsgo", "biome"]
+language-servers = ["astro-ls", "tsgo", "typescript-language-server", "biome"]
 #astro end
