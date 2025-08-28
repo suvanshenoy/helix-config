@@ -11,7 +11,6 @@ config = {}
 
 [[language]]
 name = "powershell"
-indent = { tab-width = 2, unit = "  " }
 auto-format = true
 language-servers = ["powershell-editor-services"]
 #powershell end
@@ -165,8 +164,10 @@ args = ["--stdio"]
 [[language]]
 name = "html"
 auto-format = true
-# roots = ["angular.json"]
-language-servers = [""]
+language-servers = [
+  "vscode-html-language-server",
+  "tailwindcss-language-server",
+]
 #html end
 
 #markdown
@@ -232,105 +233,92 @@ auto-format = true
 language-servers = ["astro-ls", "biome"]
 #astro end
 
-#python
-[language-server.pyright]
-command = "pyright-langserver"
-args = ["--stdio"]
+#go
+[language-server.gopls]
+command = "gopls"
 
-[language-server.pyright.config]
-python.analysis.venvPath = "."
-python.analysis.venv = ".venv"
-python.analysis.lint = true
-python.analysis.inlayHint.enable = true
-python.analysis.autoSearchPaths = true
-python.analysis.diagnosticMode = "workspace"
-python.analysis.useLibraryCodeForType = true
-python.analysis.logLevel = "Error"
-python.analysis.typeCheckingMode = "off"
-python.analysis.autoImoprtCompletion = true
-python.analysis.reportOptionalSubscript = false
-python.analysis.reportOptionalMemberAccess = false
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
 
-[language-server.ruff]
-command = "ruff"
-args = ["server", "-q"]
-environment = { "RUFF_TRACE" = "messages" }
-
-
-[language-server.ruff.config.settings]
-lineLength = 80
-logLevel = "debug"
-
-[language-server.ruff.config.settings.lint]
-select = [
-  "E",
-  "F",
-  "W",
-  "B",
-  "I",
-  "RUF",
-  "N",
-  "LOG",
-  "ERA",
-  "W",
-  "D",
-  "UP",
-  "ANN",
-  "ASYNC",
-  "S",
-  "RET",
-  "TCH",
-  "ARG",
-  "PTH",
-  "DOC",
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
 ]
-preview = true
-
-[language-server.ruff.config.settings.format]
-preview = true
-quote-style = "double"
-docstring-code-format = true
-indent-style = "space"
-
 
 [[language]]
-name = "python"
-file-types = [
-  "py",
-  "pyi",
-  "py3",
-  "pyw",
-  "ptl",
-  "rpy",
-  "cpy",
-  "ipy",
-  "pyt",
-  { glob = ".python_history" },
-  { glob = ".pythonstartup" },
-  { glob = ".pythonrc" },
-  { glob = "SConstruct" },
-  { glob = "SConscript" },
-]
-roots = [
-  "pyproject.toml",
-  "setup.py",
-  "poetry.lock",
-  "pyrightconfig.json",
-  "requirements.txt",
-  ".venv/",
-]
+name = "go"
 auto-format = true
-formatter = { command = "ruff", args = ["format", "-"] }
+formatter = { command = "gofmt" }
 language-servers = [
-  { name = "ruff", except-features = [
+  { name = "gopls", except-features = [
     "signature-help",
     "inlay-hints",
   ] },
-  { name = "pyright", except-features = [
-    "diagnostics",
+  "golangci-lint-langserver",
+]
+#go end
+
+#vue 
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "C:/Users/HP/.bun/install/global/node_modules/@vue/language-server"
+languages = ["vue"]
+
+[[language]]
+name = "vue"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = [
+  { name = "typescript-language-server", except-features = [
     "signature-help",
     "inlay-hints",
-    "format",
+  ] },
+  "vscode-html-language-server",
+  "tailwindcss-language-server",
+]
+#vue end
+
+#java
+[language-server.jdtls]
+command = "jdtls"
+
+[[language]]
+name = "java"
+roots = ["pom.xml"]
+auto-format = true
+language-servers = [{ name = "jdtls" }]
+
+#java end
+
+#xml
+[language-server.lemminx]
+command = "java"
+args = [
+  "-jar",
+  "D:/system-tools/lemminx/org.eclipse.lemminx/target/org.eclipse.lemminx-uber.jar",
+]
+
+[[language]]
+name = "xml"
+auto-format = true
+language-servers = [{ name = "lemminx" }]
+#xml end
+
+
+[langauage-server.lua-language-server]
+command = "lua-language-server"
+
+[[language]]
+name = "lua"
+auto-format = true
+language-servers = [
+  { name = "lua-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
   ] },
 ]
-#python end
