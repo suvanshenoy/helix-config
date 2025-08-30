@@ -283,33 +283,6 @@ language-servers = [
 ]
 #vue end
 
-#java
-[language-server.jdtls]
-command = "jdtls"
-
-[[language]]
-name = "java"
-roots = ["pom.xml"]
-auto-format = true
-language-servers = [{ name = "jdtls" }]
-
-#java end
-
-#xml
-[language-server.lemminx]
-command = "java"
-args = [
-  "-jar",
-  "D:/system-tools/lemminx/org.eclipse.lemminx/target/org.eclipse.lemminx-uber.jar",
-]
-
-[[language]]
-name = "xml"
-auto-format = true
-language-servers = [{ name = "lemminx" }]
-#xml end
-
-
 [langauage-server.lua-language-server]
 command = "lua-language-server"
 
