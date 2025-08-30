@@ -233,56 +233,7 @@ auto-format = true
 language-servers = ["astro-ls", "biome"]
 #astro end
 
-#go
-[language-server.gopls]
-command = "gopls"
-
-[language-server.golangci-lint-langserver]
-command = "golangci-lint-langserver"
-
-[language-server.golangci-lint-langserver.config]
-command = [
-  "golangci-lint",
-  "run",
-  "--output.json.path",
-  "stdout",
-  "--show-stats=false",
-  "--issues-exit-code=1",
-]
-
-[[language]]
-name = "go"
-auto-format = true
-formatter = { command = "gofmt" }
-language-servers = [
-  { name = "gopls", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  "golangci-lint-langserver",
-]
-#go end
-
-#vue 
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "C:/Users/HP/.bun/install/global/node_modules/@vue/language-server"
-languages = ["vue"]
-
-[[language]]
-name = "vue"
-auto-format = true
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  "vscode-html-language-server",
-  "tailwindcss-language-server",
-]
-#vue end
-
+#lua
 [langauage-server.lua-language-server]
 command = "lua-language-server"
 
@@ -295,3 +246,4 @@ language-servers = [
     "inlay-hints",
   ] },
 ]
+#lua end
