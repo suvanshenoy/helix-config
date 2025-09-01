@@ -15,7 +15,6 @@ auto-format = true
 language-servers = ["powershell-editor-services"]
 #powershell end
 
-
 #javascript-typescript
 [language-server.biome]
 command = "biome"
@@ -155,6 +154,17 @@ language-servers = [
 ]
 #css end
 
+#scss
+[[language]]
+name = "scss"
+auto-format = true
+language-servers = [
+  "biome",
+  { name = "vscode-css-language-server", except-features = [
+    "format",
+  ] },
+]
+#scss end
 
 #html
 [language-server.vscode-html-language-server]
@@ -247,3 +257,16 @@ language-servers = [
   ] },
 ]
 #lua end
+
+
+#moon
+[[language]]
+name = "moonscript"
+scope = "scope.moon"
+file-types = ["moon"]
+auto-format = true
+
+[[grammar]]
+name = "moonscript"
+source = { git = "https://github.com/leafo/moonscript", rev = "1ba34563f99e3e8a9d6685a0c84c3970a4885ede" }
+#moon end
