@@ -77,6 +77,7 @@ args = ["--stdio"]
 
 [[language]]
 name = "json"
+file-types = ["json", "develop"]
 language-servers = [
   "biome",
   { name = "vscode-json-language-server", except-features = [
@@ -88,6 +89,7 @@ language-servers = [
 #jsonc
 [[language]]
 name = "jsonc"
+file-types = ["json", "develop"]
 language-servers = [
   "biome",
   { name = "vscode-json-language-server", except-features = [
@@ -118,6 +120,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
+  "tailwindcss-language-server",
 ]
 #jsx end
 
@@ -139,6 +142,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
+  "tailwindcss-language-server",
 ]
 #tsx end
 
@@ -149,6 +153,9 @@ auto-format = true
 language-servers = [
   "biome",
   { name = "vscode-css-language-server", except-features = [
+    "format",
+  ] },
+  { name = "tailwindcss-language-server", except-features = [
     "format",
   ] },
 ]
@@ -240,7 +247,7 @@ config = { "typescript" = { "tsdk" = "C:/Users/HP/.bun/install/global/node_modul
 name = "astro"
 roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-language-servers = ["astro-ls", "biome"]
+language-servers = ["astro-ls", "biome", "tailwindcss-language-server"]
 #astro end
 
 #lua
@@ -258,15 +265,82 @@ language-servers = [
 ]
 #lua end
 
+#nim
+[langauage-server.nimlangserver]
+command = "nimlangserver"
+args = ["stdio"]
 
-#moon
 [[language]]
-name = "moonscript"
-scope = "scope.moon"
-file-types = ["moon"]
+name = "nim"
 auto-format = true
+language-servers = [
+  { name = "nimlangserver", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
 
-[[grammar]]
-name = "moonscript"
-source = { git = "https://github.com/leafo/moonscript", rev = "1ba34563f99e3e8a9d6685a0c84c3970a4885ede" }
-#moon end
+]
+#nim end
+
+
+#go
+[language-server.gopls]
+command = "gopls"
+
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "gofmt" }
+language-servers = [
+  { name = "gopls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "golangci-lint-langserver",
+]
+#go end
+
+#elixir
+[language-server.elixir-ls]
+command = "pwsh"
+args = ["-c", "D:/system-tools/elixir-ls/language_server.bat"]
+
+[[language]]
+name = "elixir"
+auto-format = true
+language-servers = [
+  { name = "elixir-ls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#elixir end
+
+#gleam
+[language-server.gleam-lsp]
+command = "gleam"
+args = ["lsp"]
+
+[[language]]
+name = "gleam"
+auto-format = true
+language-servers = [
+  { name = "gleam-lsp", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#gleam end
