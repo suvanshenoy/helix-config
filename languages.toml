@@ -24,7 +24,7 @@ args = ["lsp-proxy"]
 command = "tsgo"
 args = ["--lsp", "--stdio"]
 
-[language-server.typescript-language-server]
+[language-server.typescript-lsp]
 command = "typescript-language-server"
 args = ["--stdio"]
 
@@ -39,7 +39,7 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-language-server", except-features = [
+  { name = "typescript-lsp", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
@@ -56,22 +56,23 @@ roots = ["tsconfig.json"]
 file-types = ["mts", "ts"]
 auto-format = true
 language-servers = [
-  "biome",
   { name = "tsgo", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
+  # { name = "typescript-lsp", except-features = [
+  #   "signature-help",
+  #   "inlay-hints",
+  #   "format",
+  # ] },
+
+  { name = "biome" },
 ]
 #javascript-typescript end
 
 #json
-[language-server.vscode-json-language-server]
+[language-server.json-lsp]
 command = "vscode-json-language-server"
 args = ["--stdio"]
 
@@ -79,8 +80,8 @@ args = ["--stdio"]
 name = "json"
 file-types = ["json", "develop"]
 language-servers = [
-  "biome",
-  { name = "vscode-json-language-server", except-features = [
+  { name = "biome" },
+  { name = "json-lsp", except-features = [
     "format",
   ] },
 ]
@@ -92,13 +93,13 @@ name = "jsonc"
 file-types = ["json", "develop"]
 language-servers = [
   "biome",
-  { name = "vscode-json-language-server", except-features = [
+  { name = "json-lsp", except-features = [
     "format",
   ] },
 ]
 #jsonc end
 
-[language-server.tailwindcss-language-server]
+[language-server.tailwind-lsp]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 config = {}
@@ -115,12 +116,12 @@ language-servers = [
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-language-server", except-features = [
+  { name = "typescript-lsp", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
+  { name = "tailwind-lsp" },
 ]
 #jsx end
 
@@ -131,31 +132,35 @@ name = "tsx"
 roots = ["tsconfig.json"]
 auto-format = true
 language-servers = [
-  "biome",
+  { name = "biome" },
   { name = "tsgo", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-language-server", except-features = [
+  { name = "typescript-lsp", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  "tailwindcss-language-server",
+  { name = "tailwind-lsp" },
 ]
 #tsx end
 
 #css
+
+[language-server.css-lsp]
+command = "vscode-css-language-server"
+
 [[language]]
 name = "css"
 auto-format = true
 language-servers = [
   "biome",
-  { name = "vscode-css-language-server", except-features = [
+  { name = "css-lsp", except-features = [
     "format",
   ] },
-  { name = "tailwindcss-language-server", except-features = [
+  { name = "tailwind-lsp", except-features = [
     "format",
   ] },
 ]
@@ -167,24 +172,24 @@ name = "scss"
 auto-format = true
 language-servers = [
   "biome",
-  { name = "vscode-css-language-server", except-features = [
+  { name = "css-lsp", except-features = [
+    "format",
+  ] },
+  { name = "tailwind-lsp", except-features = [
     "format",
   ] },
 ]
 #scss end
 
 #html
-[language-server.vscode-html-language-server]
+[language-server.html-lsp]
 command = "vscode-html-language-server"
 args = ["--stdio"]
 
 [[language]]
 name = "html"
 auto-format = true
-language-servers = [
-  "vscode-html-language-server",
-  "tailwindcss-language-server",
-]
+language-servers = [{ name = "html-lsp" }]
 #html end
 
 #markdown
@@ -247,7 +252,7 @@ config = { "typescript" = { "tsdk" = "C:/Users/HP/.bun/install/global/node_modul
 name = "astro"
 roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-language-servers = ["astro-ls", "biome", "tailwindcss-language-server"]
+language-servers = ["astro-ls", "biome", "tailwind-lsp"]
 #astro end
 
 #lua
@@ -265,22 +270,22 @@ language-servers = [
 ]
 #lua end
 
-#nim
-[langauage-server.nimlangserver]
-command = "nimlangserver"
-args = ["stdio"]
+# #nim
+# [langauage-server.nimlangserver]
+# command = "nimlangserver"
+# args = ["stdio"]
 
-[[language]]
-name = "nim"
-auto-format = true
-language-servers = [
-  { name = "nimlangserver", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
+# [[language]]
+# name = "nim"
+# auto-format = true
+# language-servers = [
+#   { name = "nimlangserver", except-features = [
+#     "signature-help",
+#     "inlay-hints",
+#   ] },
 
-]
-#nim end
+# ]
+# #nim end
 
 
 #go
@@ -314,19 +319,32 @@ language-servers = [
 #go end
 
 #elixir
-[language-server.elixir-ls]
+[language-server.elixir-lsp]
 command = "pwsh"
 args = ["-c", "D:/system-tools/elixir-ls/language_server.bat"]
+
+[language-server.expert-lsp]
+command = "D:/system-tools/expert/expert.exe"
+
+[language-server.lexical-lsp]
+command = "elixir"
+args = ["D:/system-tools/lexical/_build/dev/package/lexical/bin/boot.exs"]
 
 [[language]]
 name = "elixir"
 auto-format = true
 language-servers = [
-  { name = "elixir-ls", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
+  { name = "elixir-lsp", except-features = ["signature-help", "inlay-hints"] },
+  # { name = "lexical-lsp" },
+  # { name = "expert-lsp" },
+
 ]
+
+
+[[language]]
+name = "heex"
+auto-format = true
+language-servers = [{ name = "elixir-lsp" }]
 #elixir end
 
 #gleam
@@ -344,3 +362,59 @@ language-servers = [
   ] },
 ]
 #gleam end
+
+#python
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+lineLength = 80
+logLevel = "debug"
+
+[language-server.ruff.config.settings.lint]
+select = [
+  "E",
+  "F",
+  "W",
+  "B",
+  "I",
+  "RUF",
+  "N",
+  "LOG",
+  "ERA",
+  "W",
+  "D",
+  "UP",
+  "ANN",
+  "ASYNC",
+  "S",
+  "RET",
+  "TCH",
+  "ARG",
+  "PTH",
+  "DOC",
+]
+preview = true
+
+[language-server.ruff.config.settings.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
+language-servers = ["ruff", "pyright"]
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
+file-types = ["py", "ipynb"]
+comment-token = "#"
+shebangs = ["python"]
+#python end
