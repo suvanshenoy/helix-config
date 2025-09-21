@@ -12,6 +12,7 @@ shell = [
   "-Command",
   "$PSStyle.OutputRendering='PlainText';",
 ]
+popup-border = "all"
 
 [editor.lsp]
 enable = true

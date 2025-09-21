@@ -17,16 +17,20 @@
 "ui.linenr" = { fg = "gray", modifiers = ["bold"] }
 "ui.linenr.selected" = { fg = "white", modifiers = ["bold"] }
 
-"ui.menu" = { fg = "light-gray", bg = "gray" }
-"ui.menu.selected" = { modifiers = ["reversed"] }
-"ui.menu.scroll" = { fg = "light-blue" }
+"ui.menu" = { bg = "black" }
+
+"ui.menu.selected" = { fg = "gray", modifiers = ["reversed"] }
+"ui.menu.scroll" = { fg = "gray" }
 
 "ui.popup" = { bg = "black" }
+
 "ui.selection" = { bg = "gray" }
 
 "ui.statusline" = { bg = "black" }
 "ui.statusline.inactive" = { bg = "black" }
-# "ui.statusline.separator" = { fg = "light-blue", bg = "blue", modifiers=["bold"] }
+"ui.statusline.separator" = { fg = "light-blue", bg = "blue", modifiers = [
+  "bold",
+] }
 
 "ui.virtual" = { bg = "black" }
 "ui.virtual.indent-guide" = { fg = "gray" }

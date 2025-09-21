@@ -5,7 +5,7 @@ args = [
   "-NoLogo",
   "-NoProfile",
   "-Command",
-  "/home/suvan/main/system-tools/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1 -SessionDetailsPath ./session.json  -FeatureFlags @() -AdditionalModules @() -HostName helix -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal",
+  "D:/system-tools/PowershellEditorSevices/PowerShellEditorServices/Start-EditorServices.ps1 -SessionDetailsPath ./session.json  -FeatureFlags @() -AdditionalModules @() -HostName helix -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal",
 ]
 config = {}
 
@@ -24,7 +24,7 @@ args = ["lsp-proxy"]
 command = "tsgo"
 args = ["--lsp", "--stdio"]
 
-[language-server.typescript-lsp]
+[language-server.typescript-language-server]
 command = "typescript-language-server"
 args = ["--stdio"]
 
@@ -34,20 +34,17 @@ roots = ["jsconfig.json"]
 file-types = ["mjs", "js"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
-  { name = "typescript-lsp", except-features = [
+  # { name = "tsgo", except-features = [
+  #   "signature-help",
+  #   "inlay-hints",
+  #   "format",
+  # ] },
+  { name = "typescript-language-server", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
   { name = "biome" },
-  # { name = "biome", except-features = [
-  #   "format",
-  # ] },
 ]
 
 [[language]]
@@ -56,23 +53,22 @@ roots = ["tsconfig.json"]
 file-types = ["mts", "ts"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
-  # { name = "typescript-lsp", except-features = [
+  # { name = "tsgo", except-features = [
   #   "signature-help",
   #   "inlay-hints",
   #   "format",
   # ] },
-
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
+  ] },
   { name = "biome" },
 ]
 #javascript-typescript end
 
 #json
-[language-server.json-lsp]
+[language-server.vscode-json-language-server]
 command = "vscode-json-language-server"
 args = ["--stdio"]
 
@@ -81,7 +77,7 @@ name = "json"
 file-types = ["json", "develop"]
 language-servers = [
   { name = "biome" },
-  { name = "json-lsp", except-features = [
+  { name = "vscode-json-language-server", except-features = [
     "format",
   ] },
 ]
@@ -93,13 +89,13 @@ name = "jsonc"
 file-types = ["json", "develop"]
 language-servers = [
   "biome",
-  { name = "json-lsp", except-features = [
+  { name = "vscode-json-language-server", except-features = [
     "format",
   ] },
 ]
 #jsonc end
 
-[language-server.tailwind-lsp]
+[language-server.tailwindcss-language-server]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 config = {}
@@ -110,18 +106,18 @@ name = "jsx"
 roots = ["jsconfig.json"]
 auto-format = true
 language-servers = [
-  "biome",
-  { name = "tsgo", except-features = [
+  { name = "biome" },
+  # { name = "tsgo", except-features = [
+  #   "signature-help",
+  #   "inlay-hints",
+  #   "format",
+  # ] },
+  { name = "typescript-language-server", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-lsp", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
-  { name = "tailwind-lsp" },
+  { name = "tailwindcss-language-server" },
 ]
 #jsx end
 
@@ -133,23 +129,22 @@ roots = ["tsconfig.json"]
 auto-format = true
 language-servers = [
   { name = "biome" },
-  { name = "tsgo", except-features = [
+  # { name = "tsgo", except-features = [
+  #   "signature-help",
+  #   "inlay-hints",
+  #   "format",
+  # ] },
+  { name = "typescript-language-server", except-features = [
     "signature-help",
     "inlay-hints",
     "format",
   ] },
-  { name = "typescript-lsp", except-features = [
-    "signature-help",
-    "inlay-hints",
-    "format",
-  ] },
-  { name = "tailwind-lsp" },
+  { name = "tailwindcss-language-server" },
 ]
 #tsx end
 
 #css
-
-[language-server.css-lsp]
+[language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
 
 [[language]]
@@ -157,10 +152,10 @@ name = "css"
 auto-format = true
 language-servers = [
   "biome",
-  { name = "css-lsp", except-features = [
+  { name = "vscode-css-language-server", except-features = [
     "format",
   ] },
-  { name = "tailwind-lsp", except-features = [
+  { name = "tailwindcss-language-server", except-features = [
     "format",
   ] },
 ]
@@ -172,24 +167,24 @@ name = "scss"
 auto-format = true
 language-servers = [
   "biome",
-  { name = "css-lsp", except-features = [
+  { name = "vscode-css-language-server", except-features = [
     "format",
   ] },
-  { name = "tailwind-lsp", except-features = [
+  { name = "tailwindcss-language-server", except-features = [
     "format",
   ] },
 ]
 #scss end
 
 #html
-[language-server.html-lsp]
+[language-server.vscode-html-language-server]
 command = "vscode-html-language-server"
 args = ["--stdio"]
 
 [[language]]
 name = "html"
 auto-format = true
-language-servers = [{ name = "html-lsp" }]
+language-servers = [{ name = "vscode-html-language-server" }]
 #html end
 
 #markdown
@@ -199,8 +194,11 @@ command = "markdown-oxide"
 [[language]]
 name = "markdown"
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 language-servers = ["markdown-oxide"]
+
+[language.formatter]
+command = "dprint"
+args = ["fmt", "--stdin", "md"]
 #markdown end
 
 #toml
@@ -255,116 +253,33 @@ auto-format = true
 language-servers = ["astro-ls", "biome", "tailwind-lsp"]
 #astro end
 
-#lua
-[langauage-server.lua-language-server]
-command = "lua-language-server"
-
-[[language]]
-name = "lua"
-auto-format = true
-language-servers = [
-  { name = "lua-language-server", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-]
-#lua end
-
-# #nim
-# [langauage-server.nimlangserver]
-# command = "nimlangserver"
-# args = ["stdio"]
-
-# [[language]]
-# name = "nim"
-# auto-format = true
-# language-servers = [
-#   { name = "nimlangserver", except-features = [
-#     "signature-help",
-#     "inlay-hints",
-#   ] },
-
-# ]
-# #nim end
-
-
-#go
-[language-server.gopls]
-command = "gopls"
-
-[language-server.golangci-lint-langserver]
-command = "golangci-lint-langserver"
-
-[language-server.golangci-lint-langserver.config]
-command = [
-  "golangci-lint",
-  "run",
-  "--output.json.path",
-  "stdout",
-  "--show-stats=false",
-  "--issues-exit-code=1",
-]
-
-[[language]]
-name = "go"
-auto-format = true
-formatter = { command = "gofmt" }
-language-servers = [
-  { name = "gopls", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  "golangci-lint-langserver",
-]
-#go end
-
 #elixir
-[language-server.elixir-lsp]
-command = "pwsh"
-args = ["-c", "D:/system-tools/elixir-ls/language_server.bat"]
+[language-server.elixir-ls]
+command = "D:/system-tools/elixir-ls/elixir-ls"
 
-[language-server.expert-lsp]
+[language-server.elixir-ls.config.elixirLS]
+dialyzerEnabled = true
+
+[language-server.expert]
 command = "D:/system-tools/expert/expert.exe"
-
-[language-server.lexical-lsp]
-command = "elixir"
-args = ["D:/system-tools/lexical/_build/dev/package/lexical/bin/boot.exs"]
 
 [[language]]
 name = "elixir"
+file-types = ["ex", "exs"]
+roots = ["mix.exs"]
 auto-format = true
 language-servers = [
-  { name = "elixir-lsp", except-features = ["signature-help", "inlay-hints"] },
-  # { name = "lexical-lsp" },
-  # { name = "expert-lsp" },
-
-]
-
-
-[[language]]
-name = "heex"
-auto-format = true
-language-servers = [{ name = "elixir-lsp" }]
-#elixir end
-
-#gleam
-[language-server.gleam-lsp]
-command = "gleam"
-args = ["lsp"]
-
-[[language]]
-name = "gleam"
-auto-format = true
-language-servers = [
-  { name = "gleam-lsp", except-features = [
+  { name = "elixir-ls", except-features = [
     "signature-help",
     "inlay-hints",
   ] },
+  { name = "expert" },
+
 ]
-#gleam end
+#elixir end
 
 #python
-[language-server.pyright]
+[language-server.pyright-langserver]
 command = "pyright-langserver"
 args = ["--stdio"]
 
@@ -411,10 +326,92 @@ indent-style = "space"
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
-language-servers = ["ruff", "pyright"]
+file-types = ["py", "ipynb", "pyi"]
 auto-format = true
-formatter = { command = "ruff", args = ["format", "-"] }
-file-types = ["py", "ipynb"]
-comment-token = "#"
-shebangs = ["python"]
+language-servers = [
+  { name = "ruff" },
+  { name = "pyright-langserver", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+
+[language.formatter]
+command = "ruff"
+args = ["format", "-"]
 #python end
+
+# gdscript
+[language-server.gdscript-lsp]
+command = "ncat"
+args = ["127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+auto-format = true
+language-servers = ["gdscript-lsp"]
+# gdscript end
+
+# nim
+[language-server.nimlangserver]
+command = "nimlangserver"
+args = ["stdio"]
+
+[[language]]
+name = "nim"
+auto-format = true
+language-servers = [
+  { name = "nimlangserver", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+
+]
+#nim end
+
+#go
+[language-server.gopls]
+command = "gopls"
+
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "gofmt" }
+language-servers = [
+  { name = "gopls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "golangci-lint-langserver",
+]
+#go end
+
+# gleam end
+
+[language-server.gleam-lsp]
+command = "gleam"
+args = ["lsp"]
+
+[[language]]
+name = "gleam"
+auto-format = true
+language-servers = [
+  { name = "gleam-lsp", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#gleam end
