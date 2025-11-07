@@ -4,14 +4,7 @@ theme = "personal_theme"
 line-number = "relative"
 mouse = false
 cursorline = true
-shell = [
-  "pwsh.exe",
-  "-NoLogo",
-  "-NoProfile",
-  "-NoProfileLoadTime",
-  "-Command",
-  "$PSStyle.OutputRendering='PlainText';",
-]
+shell = ["zsh", "-ic"]
 popup-border = "all"
 
 [editor.lsp]
@@ -75,5 +68,5 @@ wrap-indicator = ""
 C-s = ":write"
 C-z = ":quit!"
 C-q = ":write-quit"
-C-o = ":o ~/AppData/Roaming/helix/config.toml"
-C-l = ":o ~/AppData/Roaming/helix/languages.toml"
+C-o = ":o ~/.config/helix/config.toml"
+C-l = ":o ~/.config/helix/languages.toml"
