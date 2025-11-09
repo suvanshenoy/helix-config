@@ -26,7 +26,6 @@ auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [
     "signature-help",
-    "inlay-hints",
     "format",
   ] },
   { name = "biome" },
@@ -36,16 +35,14 @@ language-servers = [
 [[language]]
 name = "typescript"
 roots = ["deno.json", "package.json", "tsconfig.json"]
-file-types = ["mts", "ts","tsx"]
+file-types = ["mts", "ts"]
 auto-format = true
 language-servers = [
   { name = "deno-lsp", except-features = [
     "signature-help",
-    "inlay-hints",
   ] },
   { name = "biome" },
 ]
-
 
 
 [[language]]
@@ -55,7 +52,6 @@ auto-format = true
 language-servers = [
   { name = "deno-lsp", except-features = [
     "signature-help",
-    "inlay-hints",
   ] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
@@ -63,29 +59,12 @@ language-servers = [
 
 #javascript-typescript end
 
-#json
-[language-server.vscode-json-language-server]
-command = "vscode-json-language-server"
-args = ["--stdio"]
-
-[[language]]
-name = "json"
-file-types = ["json", "develop"]
-language-servers = [
-  { name = "biome" },
-  { name = "vscode-json-language-server", except-features = [
-    "format",
-  ] },
-
-]
-#json end
-
 #jsonc
 [[language]]
 name = "jsonc"
 file-types = ["json", "develop"]
 language-servers = [
-  "biome",
+  { name = "biome" },
   { name = "vscode-json-language-server", except-features = [
     "format",
   ] },
@@ -106,7 +85,20 @@ command = "vscode-css-language-server"
 name = "css"
 auto-format = true
 language-servers = [
-  "biome",
+  { name = "biome" },
+  { name = "vscode-css-language-server", except-features = [
+    "format",
+  ] },
+  { name = "tailwindcss-language-server", except-features = [
+    "format",
+  ] },
+]
+
+[[language]]
+name = "scss"
+auto-format = true
+language-servers = [
+  { name = "biome" },
   { name = "vscode-css-language-server", except-features = [
     "format",
   ] },
@@ -115,21 +107,6 @@ language-servers = [
   ] },
 ]
 #css end
-
-#scss
-[[language]]
-name = "scss"
-auto-format = true
-language-servers = [
-  "biome",
-  { name = "vscode-css-language-server", except-features = [
-    "format",
-  ] },
-  { name = "tailwindcss-language-server", except-features = [
-    "format",
-  ] },
-]
-#scss end
 
 #html
 [language-server.vscode-html-language-server]
@@ -146,14 +123,14 @@ language-servers = [{ name = "vscode-html-language-server" }]
 [language-server.markdown-oxide]
 command = "markdown-oxide"
 
+[language.formatter]
+command = "dprint"
+args = ["fmt", "--stdin", "md"]
+
 [[language]]
 name = "markdown"
 auto-format = true
 language-servers = ["markdown-oxide"]
-
-[language.formatter]
-command = "dprint"
-args = ["fmt", "--stdin", "md"]
 #markdown end
 
 #toml
@@ -208,48 +185,6 @@ auto-format = true
 language-servers = ["astro-ls", "biome", "tailwind-lsp"]
 #astro end
 
-#elixir
-[language-server.elixir-ls]
-command = "elixir-ls"
-
-[language-server.elixir-ls.config.elixirLS]
-dialyzerEnabled = true
-
-[language-server.expert]
-command = "~/system-tools/expert_linux_amd64"
-
-[[language]]
-name = "elixir"
-file-types = ["ex", "exs"]
-roots = ["mix.exs"]
-auto-format = true
-language-servers = [
-  { name = "elixir-ls", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-  { name = "expert" },
-
-]
-#elixir end
-
-
-# gleam
-[language-server.gleam-lsp]
-command = "gleam"
-args = ["lsp"]
-
-[[language]]
-name = "gleam"
-auto-format = true
-language-servers = [
-  { name = "gleam-lsp", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-]
-#gleam end
-
 #nix
 [language-server.nixd]
 command = "nixd"
@@ -262,3 +197,75 @@ name = "nix"
 auto-format = true
 language-servers = [{ name = "nixd" }, { name = "nil" }]
 #nix end
+
+#dart
+[language-server.dart-lsp]
+command = "dart"
+args = ["language-server", "--client-id=helix"]
+
+[language-server.dart-lsp.config]
+closingLabels = true
+outline = true
+flutterOnline = true
+
+[language-server.dart-lsp.config.dart]
+completeFunctionCalls = true
+showTodos = true
+renameFilesWithClasses = "always"
+enableSnippets = true
+inlayHints = true
+
+
+[[language]]
+name = "dart"
+roots = ["pubspec.yaml"]
+auto-format = true
+language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
+#dart end
+
+#cpp
+[language-server.clangd]
+command = "clangd-21"
+args = ["--background-index", "--compile-commands-dir=./build"]
+
+
+[[language]]
+name = "cpp"
+file-types = ["cpp", "cc", "cxx", "hpp", "hh", "hxx"]
+auto-format = true
+language-servers = [{ name = "clangd", except-features = ["signature-help"] }]
+
+[language-server.mesonlsp]
+command = "mesonlsp"
+args = ["--lsp"]
+
+[[language]]
+name = "meson"
+auto-format = true
+language-servers = [{ name = "mesonlsp" }]
+#cpp end
+
+#c-sharp
+[language-server.csharp-ls]
+command = "csharp-ls"
+
+[[language]]
+name = "c-sharp"
+auto-format = true
+language-servers = [
+  { name = "csharp-ls", except-features = [
+    "signature-help",
+  ] },
+]
+#c-sharp end
+
+
+#java
+[language-server.jdtls]
+command = "jdtls"
+
+[[language]]
+name = "java"
+auto-format = true
+language-servers = [{ name = "jdtls", except-features = ["signature-help"] }]
+#java end

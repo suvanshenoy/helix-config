@@ -14,6 +14,7 @@ snippets = true
 display-progress-messages = true
 display-signature-help-docs = true
 goto-reference-include-declaration = true
+display-color-swatches = true
 
 
 [editor.cursor-shape]
