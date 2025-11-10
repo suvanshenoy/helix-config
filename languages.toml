@@ -259,13 +259,32 @@ language-servers = [
 ]
 #c-sharp end
 
+#go
+[language-server.gopls]
+command = "gopls"
 
-#java
-[language-server.jdtls]
-command = "jdtls"
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
 
 [[language]]
-name = "java"
+name = "go"
 auto-format = true
-language-servers = [{ name = "jdtls", except-features = ["signature-help"] }]
-#java end
+formatter = { command = "gofmt" }
+language-servers = [
+  { name = "gopls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "golangci-lint-langserver",
+]
+#go end
