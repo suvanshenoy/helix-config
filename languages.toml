@@ -24,10 +24,11 @@ roots = ["package.json", "jsconfig.json"]
 file-types = ["mjs", "js", "jsx"]
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-  ] },
+  # { name = "typescript-language-server", except-features = [
+  #   "signature-help",
+  #   "format",
+  # ] },
+  { name = "tsgo", except-features = ["signature-help", "format"] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
 ]
