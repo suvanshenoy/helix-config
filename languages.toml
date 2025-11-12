@@ -224,24 +224,30 @@ auto-format = true
 language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
 #dart end
 
-#cpp
-[language-server.clangd]
-command = "clangd-21"
-args = ["--background-index", "--compile-commands-dir=./build"]
+#c-sharp
+[language-server.csharp-ls]
+command = "csharp-ls"
+
+[[language]]
+name = "c-sharp"
+auto-format = true
+language-servers = [
+  { name = "csharp-ls", except-features = [
+    "signature-help",
+  ] },
+]
+#c-sharp end
+
+#php
+[language-server.phpactor]
+command = "phpactor"
+args = ["language-server"]
 
 
 [[language]]
-name = "cpp"
-file-types = ["cpp", "cc", "cxx", "hpp", "hh", "hxx"]
+name = "php"
+file-types = ["php", "inc", "php4", "php5", "phtml", "ctp"]
+roots = ["composer.json", "index.php", "phpactor.json"]
 auto-format = true
-language-servers = [{ name = "clangd", except-features = ["signature-help"] }]
-
-[language-server.mesonlsp]
-command = "mesonlsp"
-args = ["--lsp"]
-
-[[language]]
-name = "meson"
-auto-format = true
-language-servers = [{ name = "mesonlsp" }]
-#cpp end
+language-servers = [{ name = "phpactor", except-features = ["signature-help"] }]
+#php end
