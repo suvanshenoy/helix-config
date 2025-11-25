@@ -11,52 +11,58 @@ args = ["--lsp", "--stdio"]
 command = "typescript-language-server"
 args = ["--stdio"]
 
-[language-server.deno-lsp]
-command = "deno"
-args = ["lsp"]
-
-[language-server.deno-lsp.config.deno]
-enable = true
-
 [[language]]
 name = "javascript"
-roots = ["package.json", "jsconfig.json"]
 file-types = ["mjs", "js", "jsx"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
     "signature-help",
     "format",
+    "hover",
+    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
     "signature-help",
     "format",
+    "code-action",
+    "goto-reference",
+    "goto-implementation",
+    "goto-type-definition",
+    "goto-declaration",
+    "goto-definition",
   ] },
+
   { name = "biome" },
   { name = "tailwindcss-language-server" },
 ]
 
+
 [[language]]
 name = "typescript"
-roots = ["deno.json", "package.json", "tsconfig.json"]
-file-types = ["mts", "ts"]
+file-types = ["mts", "ts", "tsx"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
     "signature-help",
     "format",
+    "hover",
+    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
     "signature-help",
     "format",
+    "code-action",
+    "goto-reference",
+    "goto-implementation",
+    "goto-type-definition",
+    "goto-declaration",
+    "goto-definition",
   ] },
-  { name = "deno-lsp", except-features = [
-    "signature-help",
-  ] },
+
   { name = "biome" },
   { name = "tailwindcss-language-server" },
 ]
-
 
 #javascript-typescript end
 
@@ -177,13 +183,23 @@ language-servers = ["yaml-language-server"]
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = { "typescript" = { "tsdk" = "~/.bun/install/global/node_modules/typescript/lib/" }, enviroment = "node" }
+config = { "typescript" = { "tsdk" = "/home/hp/.bun/install/global/node_modules/typescript/lib/" }, enviroment = "node" }
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@astrojs/ts-plugin"
+location = "/home/hp/.bun/install/global/node_modules/@astrojs/ts-plugin"
+languages = ["astro"]
 
 [[language]]
 name = "astro"
 roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-language-servers = ["astro-ls", "biome", "tailwind-lsp"]
+formatter = { command = "prettier", args = ["--parser", "astro"] }
+language-servers = [
+  { name = "astro-ls" },
+  { name = "biome" },
+  { name = "tailwindcss-language-server" },
+]
 #astro end
 
 #nix
@@ -237,3 +253,25 @@ language-servers = [
   ] },
 ]
 #c-sharp end
+
+#vue 
+[language-server.vue-language-server]
+command = "vue-language-server"
+args = ["--stdio"]
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "/home/hp/.bun/install/global/node_modules/@vue/language-server"
+languages = ["vue"]
+
+[[language]]
+name = "vue"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = [
+  { name = "vue-language-server" },
+  { name = "typescript-language-server" },
+  { name = "tailwindcss-language-server" },
+  { name = "vscode-html-language-server" },
+]
+#vue end
