@@ -185,6 +185,9 @@ command = "astro-ls"
 args = ["--stdio"]
 config = { "typescript" = { "tsdk" = "/home/hp/.bun/install/global/node_modules/typescript/lib/" }, enviroment = "node" }
 
+[language-server.htmx-lsp]
+command = "htmx-lsp"
+
 [[language-server.typescript-language-server.config.plugins]]
 name = "@astrojs/ts-plugin"
 location = "/home/hp/.bun/install/global/node_modules/@astrojs/ts-plugin"
@@ -194,11 +197,12 @@ languages = ["astro"]
 name = "astro"
 roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "astro"] }
 language-servers = [
-  { name = "astro-ls" },
+  { name = "astro-ls", except-features = [
+    "signature-help",
+  ] },
+  { name = "htmx-lsp" },
   { name = "biome" },
-  { name = "tailwindcss-language-server" },
 ]
 #astro end
 
@@ -240,20 +244,6 @@ auto-format = true
 language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
 #dart end
 
-#c-sharp
-[language-server.csharp-ls]
-command = "csharp-ls"
-
-[[language]]
-name = "c-sharp"
-auto-format = true
-language-servers = [
-  { name = "csharp-ls", except-features = [
-    "signature-help",
-  ] },
-]
-#c-sharp end
-
 #vue 
 [language-server.vue-language-server]
 command = "vue-language-server"
@@ -267,11 +257,14 @@ languages = ["vue"]
 [[language]]
 name = "vue"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "vue"] }
 language-servers = [
   { name = "vue-language-server" },
-  { name = "typescript-language-server" },
-  { name = "tailwindcss-language-server" },
+  { name = "typescript-language-server", except-features = [
+    "signature-help",
+    "format",
+    "diagnostics",
+  ] },
   { name = "vscode-html-language-server" },
+  { name = "biome" },
 ]
 #vue end
