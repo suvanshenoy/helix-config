@@ -20,9 +20,9 @@ language-servers = [
     "signature-help",
     "format",
     "hover",
-    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
+    "completion",
     "signature-help",
     "format",
     "code-action",
@@ -37,36 +37,8 @@ language-servers = [
   { name = "tailwindcss-language-server" },
 ]
 
-
-[[language]]
-name = "typescript"
-file-types = ["mts", "ts", "tsx"]
-auto-format = true
-language-servers = [
-  { name = "tsgo", except-features = [
-    "signature-help",
-    "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
-  ] },
-
-  { name = "biome" },
-  { name = "tailwindcss-language-server" },
-]
 
 #javascript-typescript end
-
-#jsonc
 [[language]]
 name = "jsonc"
 file-types = ["json", "develop"]
@@ -200,8 +172,8 @@ auto-format = true
 language-servers = [
   { name = "astro-ls", except-features = [
     "signature-help",
+    "format",
   ] },
-  { name = "htmx-lsp" },
   { name = "biome" },
 ]
 #astro end
@@ -243,28 +215,3 @@ roots = ["pubspec.yaml"]
 auto-format = true
 language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
 #dart end
-
-#vue 
-[language-server.vue-language-server]
-command = "vue-language-server"
-args = ["--stdio"]
-
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "/home/hp/.bun/install/global/node_modules/@vue/language-server"
-languages = ["vue"]
-
-[[language]]
-name = "vue"
-auto-format = true
-language-servers = [
-  { name = "vue-language-server" },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "diagnostics",
-  ] },
-  { name = "vscode-html-language-server" },
-  { name = "biome" },
-]
-#vue end
