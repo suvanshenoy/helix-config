@@ -3,11 +3,10 @@
 "ui.background" = {}
 "ui.background.separator" = { fg = "white", modifiers = ["bold"] }
 
-"ui.cursor" = { fg = "light-gray", modifiers = ["reversed"] }
+# "ui.cursor" = { fg = "#525252", modifiers = ["reversed", "dim"] }
 "ui.cursor.match" = { fg = "light-gray", modifiers = ["reversed"] }
-"ui.cursor.primary" = { fg = "white", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "gray", modifiers = ["reversed"] }
 "ui.cursor.secondary" = { fg = "white", modifiers = ["reversed"] }
-"ui.cursorline.primary" = { bg = "black" }
 
 "ui.gutter" = {}
 "ui.gutter.selected" = { bg = "black" }
@@ -17,12 +16,12 @@
 "ui.linenr" = { fg = "gray", modifiers = ["bold"] }
 "ui.linenr.selected" = { fg = "white", modifiers = ["bold"] }
 
-"ui.menu" = { bg = "black" }
+"ui.menu" = { bg = "black", fg = "light-gray", modifiers = ["dim"] }
 
-"ui.menu.selected" = { fg = "gray", modifiers = ["reversed"] }
-"ui.menu.scroll" = { fg = "gray" }
+"ui.menu.selected" = { fg = "gray", modifiers = ["reversed", "dim"] }
+"ui.menu.scroll" = { fg = "gray", modifiers = ["dim"] }
 
-"ui.popup" = { bg = "black" }
+"ui.popup" = { bg = "black", fg = "light-gray", modifiers = ["dim"] }
 
 "ui.selection" = { bg = "gray" }
 
@@ -46,33 +45,37 @@
 "ui.window" = { bg = "black", fg = "gray", modifiers = ["dim"] }
 
 
-"comment" = { fg = "light-gray", modifiers = ["italic", "dim"] }
-"attribute" = "green"
-"constant" = { fg = "light-blue", modifiers = ["bold"] }
-"constant.numeric" = { fg = "light-blue", modifiers = ["bold"] }
-"constant.character.escape" = "light-cyan"
-"constructor" = "green"
-"function" = { fg = "light-magenta", modifiers = ["bold"] }
-"function.macro" = { fg = "light-red", modifiers = ["bold"] }
-"tag" = { fg = "#fffff7", modifiers = ["bold"] }
-"type" = { fg = "light-magenta", modifiers = ["bold"] }
-"type.builtin" = { fg = "light-red", modifiers = ["bold"] }
-"type.enum.variant" = "green"
-"string" = { fg = "light-blue", modifiers = ["bold"] }
-"special" = { fg = "light-red", modifiers = ["bold"] }
-"variable" = { fg = "#ffb347", modifiers = ["bold"] }                     # light orange : #ffb347
-"variable.parameter" = { fg = "#ffb347", modifiers = ["bold", "italic"] }
-"variable.other.member" = { fg = "#ffb347", modifiers = ["bold"] }
-"keyword" = { fg = "light-red", modifiers = ["bold"] }
-"keyword.control.exception" = { fg = "light-red", modifiers = ["bold"] }
-"keyword.directive" = { fg = "light-red", modifiers = ["bold"] }
-"keyword.operator" = { fg = "green", modifiers = ["bold"] }
-"label" = { fg = "light-blue", modifiers = ["bold"] }
-"namespace" = { fg = "green", modifiers = ["bold"] }
+"comment" = { fg = "light-green", modifiers = ["italic", "dim"] }
+"comment.block.documentation" = { fg = "red" }
+"comment.line.documentation" = { fg = "blue" }
 
-"markup.heading" = { fg = "blue", modifiers = ["bold"] }
-"markup.list" = "light-red"
-"markup.bold" = { modifiers = ["bold"] }
+
+"attribute" = { fg = "green" }
+"constant" = { fg = "light-blue", modifiers = ["dim"] }
+"constant.numeric" = { fg = "light-blue", modifiers = ["dim"] }
+"constant.character.escape" = "light-cyan"
+"constructor" = { fg = "green", modifiers = ["dim"] }
+"function" = { fg = "light-magenta", modifiers = ["dim"] }
+"function.macro" = { fg = "light-red", modifiers = ["dim"] }
+"tag" = { fg = "#fffff7", modifiers = ["dim"] }
+"type" = { fg = "light-magenta", modifiers = ["dim"] }
+"type.builtin" = { fg = "light-red", modifiers = ["dim"] }
+"type.enum.variant" = { fg = "green" }
+"string" = { fg = "light-blue", modifiers = ["dim"] }
+"special" = { fg = "light-red", modifiers = ["dim"] }
+"variable" = { fg = "#ffb347", modifiers = ["dim"] }
+"variable.parameter" = { fg = "#ffb347", modifiers = ["dim", "italic"] }
+"variable.other.member" = { fg = "#ffb347", modifiers = ["dim"] }
+"keyword" = { fg = "light-red", modifiers = ["dim"] }
+"keyword.control.exception" = { fg = "light-red", modifiers = ["dim"] }
+"keyword.directive" = { fg = "light-red", modifiers = ["dim"] }
+"keyword.operator" = { fg = "green", modifiers = ["dim"] }
+"label" = { fg = "light-blue", modifiers = ["dim"] }
+"namespace" = { fg = "green", modifiers = ["dim"] }
+
+"markup.heading" = { fg = "blue", modifiers = ["dim"] }
+"markup.list" = { fg = "light-red" }
+"markup.bold" = { modifiers = ["dim"] }
 "markup.italic" = { modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
 "markup.link.url" = { fg = "light-magenta", modifiers = ["underlined"] }
@@ -89,8 +92,8 @@
 "diagnostic.warning" = { underline = { color = "light-yellow", style = "curl" } }
 "diagnostic.error" = { underline = { color = "light-red", style = "curl" } }
 
-"info" = "light-cyan"
-"hint" = { fg = "light-gray", modifiers = ["dim"] }
-"debug" = "white"
-"warning" = "yellow"
-"error" = "light-red"
+"info" = { fg = "light-cyan" }
+"hint" = { fg = "light-gray" }
+"debug" = { fg = "white" }
+"warning" = { fg = "yellow" }
+"error" = { fg = "light-red" }
