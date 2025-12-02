@@ -45,9 +45,9 @@
 "ui.window" = { bg = "black", fg = "gray", modifiers = ["dim"] }
 
 
-"comment" = { fg = "light-green", modifiers = ["italic", "dim"] }
-"comment.block.documentation" = { fg = "red" }
-"comment.line.documentation" = { fg = "blue" }
+"comment" = { fg = "cyan", modifiers = ["italic", "dim"] }
+"comment.block.documentation" = { fg = "red", modifiers = ["dim"] }
+"comment.line.documentation" = { fg = "blue", modifers = ["dim"] }
 
 
 "attribute" = { fg = "green" }
@@ -78,8 +78,8 @@
 "markup.bold" = { modifiers = ["dim"] }
 "markup.italic" = { modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
-"markup.link.url" = { fg = "light-magenta", modifiers = ["underlined"] }
-"markup.link.text" = { fg = "blue", modifiers = ["italic"] }
+"markup.link.url" = { fg = "light-cyan", modifiers = ["underlined", "dim"] }
+"markup.link.text" = { fg = "light-cyan", modifiers = ["italic"] }
 "markup.quote" = "light-cyan"
 "markup.raw" = "light-green"
 
