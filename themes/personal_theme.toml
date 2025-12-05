@@ -47,7 +47,7 @@
 
 "comment" = { fg = "cyan", modifiers = ["italic", "dim"] }
 "comment.block.documentation" = { fg = "red", modifiers = ["dim"] }
-"comment.line.documentation" = { fg = "blue", modifers = ["dim"] }
+"comment.line.documentation" = { fg = "blue" }
 
 
 "attribute" = { fg = "green" }

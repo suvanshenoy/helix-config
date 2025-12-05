@@ -20,9 +20,9 @@ language-servers = [
     "signature-help",
     "format",
     "hover",
+    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
-    "completion",
     "signature-help",
     "format",
     "code-action",
@@ -280,7 +280,7 @@ language-servers = [
 #gleam end
 
 #python
-[language-server.pyright-langserver]
+[language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
 
@@ -331,7 +331,7 @@ file-types = ["py", "ipynb", "pyi"]
 auto-format = true
 language-servers = [
   { name = "ruff" },
-  { name = "pyright-langserver", except-features = [
+  { name = "pyright", except-features = [
     "signature-help",
     "inlay-hints",
   ] },
@@ -353,7 +353,6 @@ autoCheckFile = true
 checkOnSave = true
 useNimCheck = true
 autoRestart = true
-formatOnSave = true
 
 [[language]]
 name = "nim"
