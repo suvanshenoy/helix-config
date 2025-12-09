@@ -1,11 +1,7 @@
-#javascript
+#javascript-typescript
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
-
-# [language-server.oxlint]
-# command = "oxlint"
-# args = ["--lsp"]
 
 [language-server.tsgo]
 command = "tsgo"
@@ -14,19 +10,28 @@ args = ["--lsp", "--stdio"]
 [language-server.typescript-language-server]
 command = "typescript-language-server"
 args = ["--stdio"]
+config = {}
+
+# [language-server.typescript-language-server.config.preferences.typescript]
+# inlayHints.includeInlayParameterNameHints = "all"
+# inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName = false
+# inlayHints.includeInlayFunctionParameterTypeHints = true
+# inlayHints.includeInlayVariableTypeHints = true
+# inlayHints.includeInlayPropertyDeclarationTypeHints = true
+# inlayHints.includeInlayFunctionLikeReturnTypeHints = true
+# inlayHints.includeInlayEnumMemberValueHints = true
 
 [[language]]
 name = "javascript"
-file-types = ["mjs", "js", "jsx"]
+file-types = ["mjs", "js", "cjs", "jsx"]
 auto-format = true
 language-servers = [
   { name = "tsgo", except-features = [
-    "signature-help",
     "format",
     "hover",
+    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
-    "completion",
     "signature-help",
     "format",
     "code-action",
@@ -38,12 +43,82 @@ language-servers = [
   ] },
 
   { name = "biome" },
-  { name = "oxlint", except-features = [
-    "format",
-  ] },
   { name = "tailwindcss-language-server" },
 ]
-#javascript end
+
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = [
+    "format",
+    "hover",
+    "completion",
+  ] },
+  { name = "typescript-language-server", except-features = [
+    "format",
+    "code-action",
+    "goto-reference",
+    "goto-implementation",
+    "goto-type-definition",
+    "goto-declaration",
+    "goto-definition",
+  ] },
+
+  { name = "biome" },
+  { name = "tailwindcss-language-server" },
+]
+
+[[language]]
+name = "typescript"
+file-types = ["mts", "ts", "tsx"]
+auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = [
+    "format",
+    "completion",
+    "hover",
+  ] },
+  { name = "typescript-language-server", except-features = [
+    "format",
+    "code-action",
+    "goto-reference",
+    "goto-implementation",
+    "goto-type-definition",
+    "goto-declaration",
+    "goto-definition",
+  ] },
+
+  { name = "biome" },
+  { name = "tailwindcss-language-server" },
+]
+
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = [
+    "format",
+    "hover",
+    "completion",
+  ] },
+  { name = "typescript-language-server", except-features = [
+    "format",
+    "code-action",
+    "goto-reference",
+    "goto-implementation",
+    "goto-type-definition",
+    "goto-declaration",
+    "goto-definition",
+  ] },
+
+  { name = "biome" },
+  { name = "tailwindcss-language-server" },
+]
+
+#javascript-typescript end
 
 [[language]]
 name = "jsonc"
@@ -166,7 +241,11 @@ config = { "typescript" = { "tsdk" = "/home/hp/.bun/install/global/node_modules/
 [language-server.htmx-lsp]
 command = "htmx-lsp"
 
-[[language-server.typescript-language-server.config.plugins]]
+[language-server.astro-typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language-server.astro-typescript-language-server.config.plugins]
 name = "@astrojs/ts-plugin"
 location = "/home/hp/.bun/install/global/node_modules/@astrojs/ts-plugin"
 languages = ["astro"]
@@ -177,11 +256,11 @@ roots = ["package.json", "astro.config.mjs", "astro.config.ts"]
 auto-format = true
 language-servers = [
   { name = "astro-ls", except-features = [
-    "signature-help",
     "format",
   ] },
   { name = "biome" },
   { name = "oxc_language_server" },
+  { name = "astro-typescript-language-server" },
 ]
 #astro end
 
@@ -207,21 +286,22 @@ args = ["language-server", "--client-id=helix"]
 [language-server.dart-lsp.config]
 closingLabels = true
 outline = true
-flutterOnline = true
+flutterOutline = true
+alloOpenUri = true
 
 [language-server.dart-lsp.config.dart]
 completeFunctionCalls = true
 showTodos = true
 renameFilesWithClasses = "always"
 enableSnippets = true
-inlayHints = true
-
+documentation = "full"
+includeDependenciesInWorkspaceSymbols = true
 
 [[language]]
 name = "dart"
 roots = ["pubspec.yaml"]
 auto-format = true
-language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
+language-servers = [{ name = "dart-lsp", except-features = [] }]
 #dart end
 
 #elixir
@@ -232,7 +312,7 @@ args = ["--stdio"]
 [[language]]
 name = "elixir"
 auto-format = true
-language-servers = [{ name = "expert-lsp" }]
+language-servers = [{ name = "expert-lsp", except-features = [] }]
 
 
 [[language]]
@@ -249,18 +329,13 @@ args = ["lsp"]
 [[language]]
 name = "gleam"
 auto-format = true
-language-servers = [
-  { name = "gleam-lsp", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-]
+language-servers = [{ name = "gleam-lsp", except-features = [] }]
 #gleam end
 
 #python
-[language-server.pyright]
-command = "pyright-langserver"
-args = ["--stdio"]
+[language-server.ty]
+command = "ty"
+args = ["server"]
 
 [language-server.ruff]
 command = "ruff"
@@ -295,6 +370,7 @@ select = [
   "DOC",
 ]
 preview = true
+ignore = ["D100", "D101", "D107", "D102"]
 
 [language-server.ruff.config.settings.format]
 preview = true
@@ -307,13 +383,7 @@ name = "python"
 roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
 file-types = ["py", "ipynb", "pyi"]
 auto-format = true
-language-servers = [
-  { name = "ruff" },
-  { name = "pyright", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-]
+language-servers = [{ name = "ruff" }, { name = "ty", except-features = [] }]
 
 [language.formatter]
 command = "ruff"
@@ -343,8 +413,6 @@ auto-format = true
 formatter = { command = "gofmt" }
 language-servers = [
   { name = "gopls", except-features = [
-    "signature-help",
-    "inlay-hints",
   ] },
   "golangci-lint-langserver",
 ]
@@ -366,36 +434,174 @@ formatOnSave = true
 [[language]]
 name = "nim"
 auto-format = true
-language-servers = [
-  { name = "nimlangserver", except-features = [
-    "signature-help",
-    "inlay-hints",
-  ] },
-
-]
+language-servers = [{ name = "nimlangserver", except-features = [] }]
 #nim end
 
 #ruby
 [language-server.solargraph]
 command = "solargraph"
 args = ["stdio"]
-config = { formatting = false }
 
-[language-server.rubocop]
-command = "rubocop"
-args = ["--lsp", "--stderr", "--fail-level", "fatal"]
-timeout = 3
+[language-server.standardrb]
+command = "standardrb"
+args = ["--lsp"]
 
 [[language]]
 name = "ruby"
+roots = [".rubocop.yml"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "solargraph", except-features = [
-    "signature-help",
-    "inlay-hints",
     "format",
   ] },
-  "rubocop",
+  { name = "standardrb" },
 ]
 #ruby end
+
+#cpp
+[language-server.clangd]
+command = "clangd-21"
+args = ["--background-index", "--compile-commands-dir=./build"]
+
+
+[[language]]
+name = "cpp"
+file-types = ["cpp", "cc", "cxx", "hpp", "hh", "hxx"]
+auto-format = true
+language-servers = [{ name = "clangd", except-features = [] }]
+#cpp end
+
+#haskell
+[language-server.haskell-language-server]
+command = "haskell-language-server-9.10.3"
+args = ["--lsp"]
+
+[[language]]
+name = "haskell"
+roots = ["Setup.hs", "stack.yaml", "*.cabal"]
+auto-format = true
+language-servers = [{ name = "haskell-language-server", except-features = [] }]
+#haskell
+
+#java
+[language-server.jdtls]
+command = "jdtls"
+
+[[language]]
+name = "java"
+roots = ["pom.xml"]
+auto-format = true
+language-servers = [{ name = "jdtls", except-features = [] }]
+#java end
+
+#c-sharp
+[language-server.csharp-ls]
+command = "csharp-ls"
+
+[[language]]
+name = "c-sharp"
+auto-format = true
+language-servers = [{ name = "csharp-ls", except-features = [] }]
+#c-sharp end
+
+#v
+[language-server.v-analyzer]
+command = "/home/hp/system-tools/v-analyzer"
+args = ["--stdio"]
+
+[[language]]
+name = "v"
+auto-format = true
+language-servers = [{ name = "v-analyzer" }]
+#v end
+
+#kotlin
+[language-server.kotlin-lsp]
+command = "kotlin-lsp.sh"
+args = ["--stdio"]
+
+[[language]]
+name = "kotlin"
+roots = ["settings.gradle.kts", "build.gradle.kts"]
+auto-format = true
+language-servers = [{ name = "kotlin-lsp" }]
+#kotlin end
+
+
+#ocaml
+[language-server.ocamllsp]
+command = "ocamllsp"
+args = ["--stdio"]
+
+[[language]]
+name = "ocaml"
+auto-format = true
+formatter = { command = "ocamlformat", args = [
+  "-",
+  "--impl",
+  "--enable-outside-detected-project",
+] }
+language-servers = [{ name = "ocamllsp", except-features = [] }]
+
+
+#ocaml-interface
+[[language]]
+name = "ocaml-interface"
+auto-format = true
+formatter = { command = "ocamlformat", args = [
+  "-",
+  "--impl",
+  "--enable-outside-detected-project",
+] }
+language-servers = [{ name = "ocamllsp", except-features = [] }]
+#ocaml-interface end
+#ocaml end
+
+#rust
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config.cargo]
+features = "all"
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable = false
+inlayHints.chainingHints.enable = true
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.typeHints.hideClosureInitialization = false
+inlayHints.closingBraceHints.minLines = 10
+inlayHints.closureCaptureHints.enable = true
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.genericParameterHints.type.enable = true
+inlayHints.implicitDrops.enable = true
+inlayHints.impliciSizedBoundHints.enable = true
+inlayHints.parameterHints.missingArguments.enable = true
+inlayHints.parameterHints.rangeExclusiveHints.enable = true
+
+
+[[language]]
+name = "rust"
+roots = ["Cargo.toml", "Cargo.lock"]
+auto-format = true
+language-servers = [{ name = "rust-analyzer", except-features = [] }]
+#rust end
+
+#powershell
+[language-server.powershell-editor-services]
+command = "powershell-editor-services"
+args = [
+  "-SessionDetailsPath ./session.json  -FeatureFlags @() -AdditionalModules @() -HostName helix -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal",
+]
+config = {}
+
+[[language]]
+name = "powershell"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["powershell-editor-services"]
+#powershell end

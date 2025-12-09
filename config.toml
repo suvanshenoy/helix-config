@@ -6,6 +6,23 @@ mouse = false
 cursorline = true
 shell = ["zsh", "-ic"]
 popup-border = "all"
+trim-trailing-whitespace = true
+trim-final-newlines = true
+bufferline = "always"
+true-color = true
+end-of-line-diagnostics = "hint"
+atomic-save = true
+completion-replace = true
+rainbow-brackets = true
+continue-comments = false
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "warning"
+
+[editor.word-completion]
+enable = true
+trigger-length = 4
 
 [editor.lsp]
 enable = true
@@ -15,6 +32,7 @@ display-progress-messages = true
 display-signature-help-docs = true
 goto-reference-include-declaration = true
 display-color-swatches = true
+display-inlay-hints = true
 
 
 [editor.cursor-shape]
@@ -34,14 +52,13 @@ left = [
   "file-modification-indicator",
 ]
 center = ["version-control"]
-right = ["diagnostics", "file-type"]
+right = ["diagnostics", "file-type", "position", "position-percentage"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 diagnostics = ["warning", "error"]
-workspace-diagnostics = ["warning", "error"]
-
+workspace-diagnostics = ["warning", "error", "hint", "info"]
 
 [editor.auto-pairs]
 '(' = ')'
