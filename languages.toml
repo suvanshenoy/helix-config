@@ -1,7 +1,11 @@
-#javascript-typescript
+#javascript
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
+
+# [language-server.oxlint]
+# command = "oxlint"
+# args = ["--lsp"]
 
 [language-server.tsgo]
 command = "tsgo"
@@ -20,9 +24,9 @@ language-servers = [
     "signature-help",
     "format",
     "hover",
-    "completion",
   ] },
   { name = "typescript-language-server", except-features = [
+    "completion",
     "signature-help",
     "format",
     "code-action",
@@ -34,11 +38,13 @@ language-servers = [
   ] },
 
   { name = "biome" },
+  { name = "oxlint", except-features = [
+    "format",
+  ] },
   { name = "tailwindcss-language-server" },
 ]
+#javascript end
 
-
-#javascript-typescript end
 [[language]]
 name = "jsonc"
 file-types = ["json", "develop"]
@@ -175,6 +181,7 @@ language-servers = [
     "format",
   ] },
   { name = "biome" },
+  { name = "oxc_language_server" },
 ]
 #astro end
 
@@ -188,6 +195,7 @@ command = "nil"
 [[language]]
 name = "nix"
 auto-format = true
+formatter = { command = "alejandra", args = ["--quiet"] }
 language-servers = [{ name = "nixd" }, { name = "nil" }]
 #nix end
 
@@ -232,3 +240,162 @@ name = "heex"
 auto-format = true
 language-servers = [{ name = "expert-lsp" }]
 #elixir end
+
+#gleam
+[language-server.gleam-lsp]
+command = "gleam"
+args = ["lsp"]
+
+[[language]]
+name = "gleam"
+auto-format = true
+language-servers = [
+  { name = "gleam-lsp", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#gleam end
+
+#python
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+lineLength = 80
+logLevel = "debug"
+
+[language-server.ruff.config.settings.lint]
+select = [
+  "E",
+  "F",
+  "W",
+  "B",
+  "I",
+  "RUF",
+  "N",
+  "LOG",
+  "ERA",
+  "W",
+  "D",
+  "UP",
+  "ANN",
+  "ASYNC",
+  "S",
+  "RET",
+  "TCH",
+  "ARG",
+  "PTH",
+  "DOC",
+]
+preview = true
+
+[language-server.ruff.config.settings.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
+file-types = ["py", "ipynb", "pyi"]
+auto-format = true
+language-servers = [
+  { name = "ruff" },
+  { name = "pyright", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+
+[language.formatter]
+command = "ruff"
+args = ["format", "-"]
+#python end
+
+#go
+[language-server.gopls]
+command = "gopls"
+
+[language-server.golangci-lint-langserver]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-langserver.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "gofmt" }
+language-servers = [
+  { name = "gopls", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  "golangci-lint-langserver",
+]
+#go end
+
+# nim
+[language-server.nimlangserver]
+command = "nimlangserver"
+args = ["stdio"]
+
+[language-server.nimlangserver.config.nim]
+autoCheckProject = true
+autoCheckFile = true
+checkOnSave = true
+useNimCheck = true
+autoRestart = true
+formatOnSave = true
+
+[[language]]
+name = "nim"
+auto-format = true
+language-servers = [
+  { name = "nimlangserver", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+
+]
+#nim end
+
+#ruby
+[language-server.solargraph]
+command = "solargraph"
+args = ["stdio"]
+config = { formatting = false }
+
+[language-server.rubocop]
+command = "rubocop"
+args = ["--lsp", "--stderr", "--fail-level", "fatal"]
+timeout = 3
+
+[[language]]
+name = "ruby"
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [
+  { name = "solargraph", except-features = [
+    "signature-help",
+    "inlay-hints",
+    "format",
+  ] },
+  "rubocop",
+]
+#ruby end
