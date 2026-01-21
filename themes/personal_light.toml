@@ -1,0 +1,100 @@
+# author: suvanshenoy
+
+"ui.background" = {}
+"ui.background.separator" = { fg = "white", modifiers = ["bold"] }
+
+"ui.cursor" = { fg = "light-gray", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "light-gray", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "white", modifiers = ["reversed"] }
+"ui.cursor.secondary" = { fg = "white", modifiers = ["reversed"] }
+"ui.cursorline.primary" = { bg = "black" }
+
+"ui.gutter" = {}
+"ui.gutter.selected" = { bg = "black" }
+
+"ui.help" = { fg = "white", bg = "black" }
+
+"ui.linenr" = { fg = "gray", modifiers = ["bold"] }
+"ui.linenr.selected" = { fg = "white", modifiers = ["bold"] }
+
+"ui.menu" = { bg = "black" }
+
+"ui.menu.selected" = { fg = "gray", modifiers = ["reversed"] }
+"ui.menu.scroll" = { fg = "gray" }
+
+"ui.popup" = { bg = "black" }
+
+"ui.selection" = { bg = "gray" }
+
+"ui.statusline" = { bg = "black" }
+"ui.statusline.inactive" = { bg = "black" }
+"ui.statusline.separator" = { fg = "light-blue", bg = "blue", modifiers = [
+  "bold",
+] }
+
+"ui.virtual" = { bg = "black" }
+"ui.virtual.indent-guide" = { fg = "gray" }
+"ui.virtual.whitespace" = {}
+"ui.virtual.wrap" = { fg = "gray" }
+"ui.virtual.inlay-hint" = { fg = "light-gray", modifiers = ["dim", "italic"] }
+"ui.virtual.inlay-hint.parameter" = { fg = "yellow", modifiers = [
+  "dim",
+  "italic",
+] }
+"ui.virtual.inlay-hint.type" = { fg = "blue", modifiers = ["dim", "italic"] }
+
+"ui.window" = { bg = "black", fg = "gray", modifiers = ["dim"] }
+
+
+"comment" = { fg = "cyan", modifiers = ["italic", "dim"] }
+"comment.block.documentation" = { fg = "red", modifiers = ["dim"] }
+"comment.line.documentation" = { fg = "blue" }
+
+
+"attribute" = "green"
+"constant" = { fg = "light-blue", modifiers = ["bold"] }
+"constant.numeric" = { fg = "light-blue", modifiers = ["bold"] }
+"constant.character.escape" = "light-cyan"
+"constructor" = "green"
+"function" = { fg = "light-magenta", modifiers = ["bold"] }
+"function.macro" = { fg = "light-red", modifiers = ["bold"] }
+"tag" = { fg = "#fffff7", modifiers = ["bold"] }
+"type" = { fg = "light-magenta", modifiers = ["bold"] }
+"type.builtin" = { fg = "light-red", modifiers = ["bold"] }
+"type.enum.variant" = "green"
+"string" = { fg = "light-blue", modifiers = ["bold"] }
+"special" = { fg = "light-red", modifiers = ["bold"] }
+"variable" = { fg = "#ffb347", modifiers = ["bold"] }                     # light orange : #ffb347
+"variable.parameter" = { fg = "#ffb347", modifiers = ["bold", "italic"] }
+"variable.other.member" = { fg = "#ffb347", modifiers = ["bold"] }
+"keyword" = { fg = "light-red", modifiers = ["bold"] }
+"keyword.control.exception" = { fg = "light-red", modifiers = ["bold"] }
+"keyword.directive" = { fg = "light-red", modifiers = ["bold"] }
+"keyword.operator" = { fg = "green", modifiers = ["bold"] }
+"label" = { fg = "light-blue", modifiers = ["bold"] }
+"namespace" = { fg = "green", modifiers = ["bold"] }
+
+"markup.heading" = { fg = "blue", modifiers = ["bold"] }
+"markup.list" = "light-red"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "light-magenta", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "blue", modifiers = ["italic"] }
+"markup.quote" = "light-cyan"
+"markup.raw" = "light-green"
+
+"diff.plus" = "light-green"
+"diff.delta" = "light-yellow"
+"diff.minus" = "light-red"
+
+"diagnostic.hint" = { underline = { color = "gray", style = "curl" } }
+"diagnostic.info" = { underline = { color = "light-cyan", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "light-yellow", style = "curl" } }
+"diagnostic.error" = { underline = { color = "light-red", style = "curl" } }
+
+"info" = "light-cyan"
+"hint" = { fg = "light-gray", modifiers = ["dim"] }
+"debug" = "white"
+"warning" = "yellow"
+"error" = "light-red"

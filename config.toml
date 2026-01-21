@@ -1,4 +1,4 @@
-theme = "personal_theme"
+theme = "personal_light"
 
 [editor]
 line-number = "relative"
@@ -10,15 +10,15 @@ trim-trailing-whitespace = true
 trim-final-newlines = true
 bufferline = "always"
 true-color = true
-end-of-line-diagnostics = "hint"
+end-of-line-diagnostics = "disable"
 atomic-save = true
 completion-replace = true
 rainbow-brackets = true
 continue-comments = false
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
-other-lines = "warning"
+cursor-line = "disable"
+other-lines = "disable"
 
 [editor.word-completion]
 enable = true

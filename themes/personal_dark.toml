@@ -3,7 +3,7 @@
 "ui.background" = {}
 "ui.background.separator" = { fg = "white", modifiers = ["bold"] }
 
-# "ui.cursor" = { fg = "#525252", modifiers = ["reversed", "dim"] }
+"ui.cursor" = { fg = "#525252", modifiers = ["reversed", "dim"] }
 "ui.cursor.match" = { fg = "light-gray", modifiers = ["reversed"] }
 "ui.cursor.primary" = { fg = "gray", modifiers = ["reversed"] }
 "ui.cursor.secondary" = { fg = "white", modifiers = ["reversed"] }
