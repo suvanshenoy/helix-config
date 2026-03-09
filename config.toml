@@ -10,14 +10,14 @@ trim-trailing-whitespace = true
 trim-final-newlines = true
 bufferline = "always"
 true-color = true
-end-of-line-diagnostics = "disable"
+end-of-line-diagnostics = "hint"
 atomic-save = true
 completion-replace = true
 rainbow-brackets = true
 continue-comments = false
 
 [editor.inline-diagnostics]
-cursor-line = "disable"
+cursor-line = "warning"
 other-lines = "disable"
 
 [editor.word-completion]

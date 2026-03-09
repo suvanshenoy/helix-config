@@ -1,16 +1,53 @@
+[language-server.lsp-ai]
+command = "lsp-ai"
+
+[language-server.lsp-ai.config.memory]
+file_store = {}
+
+[language-server.lsp-ai.config]
+
+chat = [
+
+  { trigger = "!C", action_display_name = "Chat", model = "model1", parameters = { contents = [
+    { role = "user", parts = [
+
+      { text = "{CODE}" },
+
+    ] },
+
+  ], systemInstruction = { role = "system", parts = [
+
+    { text = "You are a code assistant chatbot. The user will ask you for assistance coding and you will do you best to answer succinctly and accurately.\n" },
+
+  ] } } },
+]
+
+
+[language-server.lsp-ai.config.models.model1]
+type = "gemini"
+model = "gemini-2.5-flash-latest"
+auth_token_env_var_name = "GEMINI_API_KEY"
+
+
+[language-server.lsp-ai.config.actions.parameters]
+max_content = 2048
+max_tokens = 1024
+temperature = 0.1
+
+
 #javascript-typescript
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
 
-[language-server.tsgo]
-command = "tsgo"
-args = ["--lsp", "--stdio"]
+[language-server.oxlint]
+command = "oxlint"
+args = ["--lsp"]
 
-[language-server.typescript-language-server]
-command = "typescript-language-server"
-args = ["--stdio"]
-config = {}
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+config.deno.enable = true
 
 # [language-server.typescript-language-server.config]
 # inlayHints.includeInlayParameterNameHints = "all"
@@ -26,25 +63,15 @@ name = "javascript"
 file-types = ["mjs", "js", "cjs"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "deno-lsp", except-features = [
     "signature-help",
-    "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
+    "inlay-hints",
   ] },
 
   { name = "biome" },
+  { name = "oxlint" },
   { name = "tailwindcss-language-server" },
+  { name = "lsp-ai" },
 ]
 
 
@@ -52,76 +79,46 @@ language-servers = [
 name = "jsx"
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "deno-lsp", except-features = [
     "signature-help",
-    "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
+    "inlay-hints",
   ] },
 
   { name = "biome" },
+  { name = "oxlint" },
   { name = "tailwindcss-language-server" },
+  { name = "lsp-ai" },
 ]
 
 [[language]]
 name = "typescript"
-file-types = ["mts", "ts"]
+file-types = ["mts", "cts", "ts"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "deno-lsp", except-features = [
     "signature-help",
-    "format",
-    "completion",
-    "hover",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
+    "inlay-hints",
   ] },
 
   { name = "biome" },
+  { name = "oxlint" },
   { name = "tailwindcss-language-server" },
+  { name = "lsp-ai" },
 ]
 
 [[language]]
 name = "tsx"
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "deno-lsp", except-features = [
     "signature-help",
-    "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
+    "inlay-hints",
   ] },
 
   { name = "biome" },
+  { name = "oxlint" },
   { name = "tailwindcss-language-server" },
+  { name = "lsp-ai" },
 ]
 #javascript-typescript end
 
@@ -133,6 +130,7 @@ language-servers = [
   { name = "vscode-json-language-server", except-features = [
     "format",
   ] },
+  { name = "lsp-ai" },
 ]
 #jsonc end
 
@@ -157,6 +155,8 @@ language-servers = [
   { name = "tailwindcss-language-server", except-features = [
     "format",
   ] },
+
+  { name = "lsp-ai" },
 ]
 
 [[language]]
@@ -170,6 +170,8 @@ language-servers = [
   { name = "tailwindcss-language-server", except-features = [
     "format",
   ] },
+
+  { name = "lsp-ai" },
 ]
 #css end
 
@@ -181,7 +183,11 @@ args = ["--stdio"]
 [[language]]
 name = "html"
 auto-format = true
-language-servers = [{ name = "vscode-html-language-server" }]
+language-servers = [
+  { name = "vscode-html-language-server" },
+
+  { name = "lsp-ai" },
+]
 #html end
 
 #markdown
@@ -192,7 +198,13 @@ command = "markdown-oxide"
 name = "markdown"
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
-language-servers = ["markdown-oxide", "vscode-html-language-server"]
+language-servers = [
+  { name = "markdown-oxide" },
+  { name = "vscode-html-language-server" },
+
+  { name = "lsp-ai" },
+
+]
 #markdown end
 
 #toml
@@ -200,7 +212,7 @@ language-servers = ["markdown-oxide", "vscode-html-language-server"]
 name = "toml"
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
-language-servers = ["taplo"]
+language-servers = [{ name = "taplo" }, { name = "lsp-ai" }]
 #toml end
 
 #yaml
@@ -211,7 +223,7 @@ args = ["--stdio"]
 [[language]]
 name = "yaml"
 auto-format = true
-language-servers = ["yaml-language-server"]
+language-servers = [{ name = "yaml-language-server" }, { name = "lsp-ai" }]
 #yaml
 
 
@@ -223,7 +235,7 @@ args = ["--stdio"]
 [[language]]
 name = "dockerfile"
 auto-format = true
-language-servers = ["docker-langserver"]
+language-servers = [{ name = "docker-langserver" }, { name = "lsp-ai" }]
 #dockerfile
 
 
@@ -232,7 +244,7 @@ language-servers = ["docker-langserver"]
 name = "docker-compose"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "yaml"] }
-language-servers = ["yaml-language-server"]
+language-servers = [{ name = "yaml-language-server" }, { name = "lsp-ai" }]
 #yaml
 
 #astro
@@ -264,6 +276,7 @@ language-servers = [
   { name = "biome" },
   { name = "oxc_language_server" },
   { name = "astro-typescript-language-server" },
+  { name = "lsp-ai" },
 ]
 #astro end
 
@@ -278,7 +291,7 @@ command = "nil"
 name = "nix"
 auto-format = true
 formatter = { command = "alejandra", args = ["--quiet"] }
-language-servers = [{ name = "nixd" }, { name = "nil" }]
+language-servers = [{ name = "nixd" }, { name = "nil" }, { name = "lsp-ai" }]
 #nix end
 
 #dart
@@ -304,7 +317,13 @@ includeDependenciesInWorkspaceSymbols = true
 name = "dart"
 roots = ["pubspec.yaml"]
 auto-format = true
-language-servers = [{ name = "dart-lsp", except-features = ["signature-help"] }]
+language-servers = [
+  { name = "dart-lsp", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+
+]
 #dart end
 
 #elixir
@@ -323,13 +342,13 @@ language-servers = [
   { name = "vscode-html-language-server", except-features = [
     "format",
   ] },
+  { name = "lsp-ai" },
 ]
-
 
 [[language]]
 name = "heex"
 auto-format = true
-language-servers = [{ name = "expert-lsp" }]
+language-servers = [{ name = "expert-lsp" }, { name = "lsp-ai" }]
 #elixir end
 
 #gleam
@@ -344,6 +363,7 @@ language-servers = [
   { name = "gleam-lsp", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
 #gleam end
 
@@ -403,6 +423,7 @@ language-servers = [
   { name = "ty", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
 
 [language.formatter]
@@ -433,10 +454,10 @@ auto-format = true
 formatter = { command = "gofmt" }
 language-servers = [
   { name = "gopls", except-features = [
-
     "signature-help",
   ] },
-  "golangci-lint-langserver",
+  { name = "golangci-lint-langserver" },
+  { name = "lsp-ai" },
 ]
 #go end
 
@@ -460,6 +481,7 @@ language-servers = [
   { name = "nimlangserver", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
 #nim end
 
@@ -479,12 +501,11 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 language-servers = [
   { name = "solargraph", except-features = [
-
     "signature-help",
-
     "format",
   ] },
   { name = "standardrb" },
+  { name = "lsp-ai" },
 ]
 #ruby end
 
@@ -498,7 +519,13 @@ args = ["--background-index", "--compile-commands-dir=./build"]
 name = "cpp"
 file-types = ["cpp", "cc", "cxx", "hpp", "hh", "hxx"]
 auto-format = true
-language-servers = [{ name = "clangd", except-features = ["signature-help"] }]
+language-servers = [
+  { name = "clangd", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+  { name = "lsp-ai" },
+]
 #cpp end
 
 #haskell
@@ -514,6 +541,7 @@ language-servers = [
   { name = "haskell-language-server", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
 #haskell
 
@@ -528,7 +556,7 @@ auto-format = true
 language-servers = [{ name = "jdtls", except-features = ["signature-help"] }]
 #java end
 
-#c-sharp
+#csharp
 [language-server.csharp-ls]
 command = "csharp-ls"
 
@@ -539,23 +567,29 @@ language-servers = [
   { name = "csharp-ls", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
-#c-sharp end
+#csharp end
 
-#v
+#vlang
 [language-server.v-analyzer]
-command = "/home/hp/system-tools/v-analyzer"
+command = "v-analyzer"
 args = ["--stdio"]
+
+[language-server.vls]
+command = "vls"
+args = ["--socket", "5007"]
 
 [[language]]
 name = "v"
 auto-format = true
 language-servers = [
-  { name = "v-analyzer", except-features = [
+  { name = "vls", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
-#v end
+#vlang end
 
 #kotlin
 [language-server.kotlin-lsp]
@@ -570,6 +604,7 @@ language-servers = [
   { name = "kotlin-lsp", except-features = [
     "signature-help",
   ] },
+  { name = "lsp-ai" },
 ]
 #kotlin end
 
@@ -587,7 +622,12 @@ formatter = { command = "ocamlformat", args = [
   "--impl",
   "--enable-outside-detected-project",
 ] }
-language-servers = [{ name = "ocamllsp", except-features = ["signature-help"] }]
+language-servers = [
+  { name = "ocamllsp", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+]
 
 
 #ocaml-interface
@@ -599,7 +639,12 @@ formatter = { command = "ocamlformat", args = [
   "--impl",
   "--enable-outside-detected-project",
 ] }
-language-servers = [{ name = "ocamllsp", except-features = ["signature-help"] }]
+language-servers = [
+  { name = "ocamllsp", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+]
 #ocaml-interface end
 #ocaml end
 
@@ -628,7 +673,6 @@ inlayHints.impliciSizedBoundHints.enable = true
 inlayHints.parameterHints.missingArguments.enable = true
 inlayHints.parameterHints.rangeExclusiveHints.enable = true
 
-
 [[language]]
 name = "rust"
 roots = ["Cargo.toml", "Cargo.lock"]
@@ -636,7 +680,9 @@ auto-format = true
 language-servers = [
   { name = "rust-analyzer", except-features = [
     "signature-help",
+    "inlay-hints",
   ] },
+  { name = "lsp-ai" },
 ]
 #rust end
 
@@ -652,7 +698,10 @@ config = {}
 name = "powershell"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-language-servers = ["powershell-editor-services"]
+language-servers = [
+  { name = "powershell-editor-services" },
+  { name = "lsp-ai" },
+]
 #powershell end
 
 #vue
@@ -679,20 +728,75 @@ language-servers = [
   { name = "vscode-html-language-server" },
   { name = "tailwindcss-language-server" },
   { name = "biome" },
+  { name = "lsp-ai" },
 ]
 #vue end
 
 
 #crystal
-
-
-[language-server.liger]
-command = "liger"
+[language-server.crystalline]
+command = "crystalline"
+args = ["--stdio"]
 
 [[language]]
 name = "crystal"
 roots = ["shard.yml"]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
-language-servers = [{ name = "crystalline" }, { name = "liger" }]
+language-servers = [{ name = "crystalline" }, { name = "lsp-ai" }]
 #crystal end
+
+#julia
+[language-server.julia]
+command = "julia"
+args = [
+  "--project=@LanguageServer",
+  "--startup-file=no",
+  "--history-file=no",
+  "-e",
+  "using LanguageServer; runserver()",
+]
+
+
+[[language]]
+name = "julia"
+auto-format = true
+language-servers = [
+  { name = "julia", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+]
+#julia end
+
+#odin
+[language-server.ols]
+name = "ols"
+
+[[language]]
+name = "odin"
+auto-format = true
+formatter = { command = "odinfmt", args = ["-stdin"] }
+language-servers = [
+  { name = "ols", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+]
+#odin end
+
+
+#lua
+[language-server.lua-language-server]
+name = "lua-Language-server"
+
+[[language]]
+name = "lua"
+auto-format = true
+language-servers = [
+  { name = "lua-language-server", except-features = [
+    "signature-help",
+  ] },
+  { name = "lsp-ai" },
+]
+#odin end
