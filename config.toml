@@ -4,7 +4,7 @@ theme = "personal_light"
 line-number = "relative"
 mouse = false
 cursorline = true
-shell = ["zsh", "-ic"]
+shell = ["zsh", "-lc"]
 popup-border = "all"
 trim-trailing-whitespace = true
 trim-final-newlines = true
@@ -15,6 +15,11 @@ atomic-save = true
 completion-replace = true
 rainbow-brackets = true
 continue-comments = false
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 0
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
@@ -88,3 +93,7 @@ C-z = ":quit!"
 C-q = ":write-quit"
 C-o = ":o ~/.config/helix/config.toml"
 C-l = ":o ~/.config/helix/languages.toml"
+C-d = ":half-page-down-smooth"
+C-u = ":half-page-up-smooth"
+pageup = ":page-up-smooth"
+pagedown = ":page-down-smooth"
