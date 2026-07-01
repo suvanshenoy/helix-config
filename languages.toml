@@ -3,12 +3,8 @@
 command = "biome"
 args = ["lsp-proxy"]
 
-[language-server.oxlint]
-command = "oxlint"
-args = ["--lsp"]
-
-[language-server.tsgo]
-command = "tsgo"
+[language-server.tsc]
+command = "tsc"
 args = ["--lsp", "--stdio"]
 
 [language-server.typescript-language-server]
@@ -20,21 +16,10 @@ name = "javascript"
 file-types = ["mjs", "js", "cjs"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "tsc", except-features = [
     "signature-help",
+    "inlay-hints",
     "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
   ] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
@@ -45,21 +30,10 @@ language-servers = [
 name = "jsx"
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "tsc", except-features = [
     "signature-help",
+    "inlay-hints",
     "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
   ] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
@@ -70,21 +44,10 @@ name = "typescript"
 file-types = ["mts", "cts", "ts"]
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "tsc", except-features = [
     "signature-help",
+    "inlay-hints",
     "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
   ] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
@@ -94,21 +57,10 @@ language-servers = [
 name = "tsx"
 auto-format = true
 language-servers = [
-  { name = "tsgo", except-features = [
+  { name = "tsc", except-features = [
     "signature-help",
+    "inlay-hints",
     "format",
-    "hover",
-    "completion",
-  ] },
-  { name = "typescript-language-server", except-features = [
-    "signature-help",
-    "format",
-    "code-action",
-    "goto-reference",
-    "goto-implementation",
-    "goto-type-definition",
-    "goto-declaration",
-    "goto-definition",
   ] },
   { name = "biome" },
   { name = "tailwindcss-language-server" },
@@ -139,6 +91,7 @@ args = ["--stdio"]
 [[language]]
 name = "css"
 auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "css"] }
 language-servers = [
   { name = "biome" },
   { name = "vscode-css-language-server" },
@@ -149,6 +102,7 @@ language-servers = [
 [[language]]
 name = "scss"
 auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "scss"] }
 language-servers = [
   { name = "biome" },
   { name = "vscode-css-language-server", except-features = [
@@ -830,7 +784,9 @@ args = ["-c", "/home/hp/.config/helix/efm-langserver/common-lisp.yaml"]
 
 #common-lisp
 [language-server.cl-lsp]
-command = "cl-lsp"
+command = "cl-lsp.ros"
+args = ["--stdio"]
+
 
 [[language]]
 name = "common-lisp"
@@ -843,6 +799,7 @@ language-servers = [
     "signature-help",
     "inlay-hints",
   ] },
+
 ]
 
 #common-lisp end
@@ -914,10 +871,28 @@ command = "clojure-lsp"
 args = ["listen"]
 
 [[language]]
-name = "scheme"
+name = "clojure"
 auto-format = true
 language-servers = [
   { name = "clojure-lsp", except-features = [
+    "signature-help",
+    "inlay-hints",
+  ] },
+]
+#clojure end
+
+
+#elm
+[language-server.elm-language-server]
+command = "elm-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "elm"
+roots = ["elm.json"]
+auto-format = true
+language-servers = [
+  { name = "elm-language-server", except-features = [
     "signature-help",
     "inlay-hints",
   ] },
