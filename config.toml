@@ -15,11 +15,13 @@ atomic-save = true
 completion-replace = true
 rainbow-brackets = true
 continue-comments = false
+idle-timeout = 0
+completion-trigger-len = 1
 
 [editor.auto-save]
 focus-lost = true
-after-delay.enable = true
-after-delay.timeout = 0
+# after-delay.enable = true
+# after-delay.timeout = 3000
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
